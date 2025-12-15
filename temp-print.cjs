@@ -1,0 +1,1 @@
+\"const fs = require('fs');\nconst lines = fs.readFileSync('src/components/Footer/footer.jsx','utf8').split(/\r?\n/);\nlines.forEach((line, idx) => console.log(`${idx+1} ${line}`));\" 

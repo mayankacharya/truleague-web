@@ -1,0 +1,10 @@
+const fs = require('fs');
+const path = 'src/components/Insights/Insights.css';
+let text = fs.readFileSync(path, 'utf8');
+const scrollBlock = \"/* Horizontal track jisme saare slides side-by-side */\n.insights-scroll-container {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  align-items: stretch;\n  justify-content: flex-start;\n  transition: transform 0.5s ease-out;\n  z-index: 0;\n  gap: clamp(2rem, 5vw, 4rem);\n  padding: 0 clamp(2rem, 5vw, 4rem);\n  box-sizing: border-box;\n}\n\n^\";
+const itemBlock = \"/* Har slide = full viewport width */\n.insights-item {\n  position: relative;\n  flex: 0 0 100%;\n  min-width: 100%;\n  height: 100%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  padding: 0;\n}\n\n^\";
+const cardBlock = \"/* RIGHT CARD AREA */\n.insights-card-container {\n  flex: 0 0 auto;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  min-width: 320px;\n  max-width: 520px;\n  width: min(520px, 90vw);\n  margin: 0 auto;\n}\n\n^\";
+text = text.replace(/\/\* Horizontal track jisme saare slides side-by-side \*\/\s*\.insights-scroll-container \{[\s\S]*?\}\s*\n/, scrollBlock);
+text = text.replace(/\/\* Har slide = full viewport width \*\/\s*\.insights-item \{[\s\S]*?\}\s*\n/, itemBlock);
+text = text.replace(/\/\* RIGHT CARD AREA \*\/\s*\.insights-card-container \{[\s\S]*?\}\s*\n/, cardBlock);
+fs.writeFileSync(path, text);

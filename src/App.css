@@ -1,0 +1,37 @@
+.app {
+  /* width: 100%; */
+  min-height: 100vh;
+  background: #fefbff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2rem;
+  /* overflow-x: hidden; */
+}
+
+.app__hero {
+  max-width: 960px;
+  margin: 2rem auto 0;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 25px 40px rgba(15, 4, 45, 0.1);
+}
+
+.app__hero-note {
+  margin: 0;
+  font-weight: 600;
+  color: #433669;
+  letter-spacing: 0.04em;
+}
+
+.app__skeleton {
+  width: 100%;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4e156b;
+  font-weight: 600;
+}

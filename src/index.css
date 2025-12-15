@@ -1,0 +1,20 @@
+/* Fonts only – no global force */
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600&family=Sora:wght@300;400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f7f4fb;
+  color: #111;
+  overflow-x: hidden;
+
+  /* default jo pehle tha wahi rehne do */
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}

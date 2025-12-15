@@ -1,0 +1,173 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.insights-master-container {
+  position: relative;
+  width: 100%;
+  height: 460vh;
+  background: #fafafa;
+}
+
+/* Sticky viewport */
+.insights-viewport {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #f5f0ff 0%, #f0f5ff 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Horizontal slider track */
+.insights-scroll-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 96px; /* 👈 SAME GAP BETWEEN ALL CARDS */
+  transition: transform 0.5s ease-out;
+}
+
+/* Each slide takes full screen width */
+.insights-item {
+  flex: 0 0 100vw; /* 👈 SLIDE WIDTH FIXED */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Slide layout: LEFT (text/placeholder) + RIGHT (card) */
+.insights-item-content {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LEFT PANEL – text only on first slide */
+.insights-text {
+  width: 45%; /* 👈 FIXED WIDTH */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 40px;
+}
+
+/* For other slides LEFT AREA exists but invisible → maintains equal spacing */
+.insights-text--placeholder {
+  width: 45%;
+  visibility: hidden; /* 👈 same space occupy, hidden */
+}
+
+.insights-heading {
+  font-size: 44px;
+  font-weight: 502;
+  color: var(--Purple-Web, rgba(78, 21, 107, 1));
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  font-family: "sora", sans-serif;
+}
+
+/* RIGHT PANEL for card */
+.insights-card-container {
+  width: 60%; /* 👈 SAME FOR ALL SLIDES */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* 👈 STARTS AT SAME X POSITION */
+  min-width: 320px;
+}
+/* Second, third, fourth slide ko thoda LEFT overlap karao */
+@media (min-width: 1024px) {
+  .insights-item + .insights-item {
+    margin-left: -580px; /* 👈 applies only on web/desktop */
+  }
+}
+
+
+
+/* CARD UI */
+.insights-card {
+  border-radius: 40px;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: radial-gradient(
+    95.99% 112.33% at 37.59% 28.2%,
+    #f1f3ff 0%,
+    #cdd4ff 60.64%
+  );
+  overflow: hidden;
+}
+
+.card-icon {
+  width: 261px;
+  height: 261px;
+  object-fit: contain;
+  transition: transform 0.3s ease-out;  /* 👈 yeh naya add karo */
+}
+
+
+.card-text {
+  font-size: 36px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 1);
+  font-family: "sora", sans-serif;
+}
+
+/* THANK YOU SECTION */
+.insights-bottom {
+  min-height: 30vh;
+  padding: 4rem 0;
+  background: linear-gradient(180deg, #f6f2ff 0%, #e6dbff 60%, #d2c4ff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #4e156b;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .insights-heading {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .insights-item + .insights-item {
+    margin-left: -280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .insights-item-content {
+    flex-direction: column;
+  }
+
+  .insights-text,
+  .insights-card-container {
+    width: 100%;
+    flex: none;
+  }
+
+  .insights-card {
+    height: 380px;
+    padding: 2rem;
+  }
+
+  .card-text {
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+  }
+}
