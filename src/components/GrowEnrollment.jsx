@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import './GrowEnrollment.css'
 import inquirySVG from '../assets/onlySVG/enrollment1.svg'
-import aiInsightsSVG from '../assets/onlySVG/AI-powered.svg'
+import aiInsightsSVG from '../assets/OnlySVG/AI-powered.svg'
 import belongingSVG from '../assets/OnlySVG/belonging.svg'
 import veryPositiveSVG from '../assets/OnlySVG/verypositive01.svg'
 import PositiveSVG from '../assets/OnlySVG/positive.svg'
