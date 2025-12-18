@@ -30,7 +30,7 @@ const Hero = () => (
         increase yield and optimize recruitment performance across the funnel.
       </p>
       <button type="button" className="hero-section__cta">
-        Increase yield by 15%
+        Increase yield by 15%?
       </button>
     </div>
   </section>

@@ -905,7 +905,7 @@
     display: block;
     position: absolute;
     bottom: 1rem;
-    left: 25%;
+    left: 34%;
     transform: translateX(-50%);
     width: calc(100% - 0rem);
     /* max-width: 280px; */
@@ -1155,7 +1155,7 @@
 
 .sentiment-footer-figma {
   position: absolute;
-  bottom: 0.4rem;
+  bottom: -3.4rem;
   left: -1.6rem;
   /* width: min(520px, 90%); */
   background: #ffffff;
@@ -1189,7 +1189,7 @@
 /* Mobile */
 @media (max-width: 600px) {
   .sentiment-footer-figma {
-    left: 50%;
+    left: 36%;
     transform: translateX(-50%);
     width: 92%;
     padding: 14px 18px;

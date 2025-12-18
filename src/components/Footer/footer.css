@@ -372,3 +372,131 @@
   outline: 2px solid rgba(255,255,255,0.15);
   outline-offset: 3px;
 }
+.footer-mobile {
+  background: linear-gradient(180deg, #4b0b73 0%, #2b003d 100%);
+  color: #fff;
+  padding: 2.2rem 1.4rem 2rem;
+  font-family: "Lexend Deca", sans-serif;
+}
+
+.footer-mobile-inner {
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+/* ===== TOP CENTER ===== */
+.mobile-top-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.mobile-logo {
+  width: 80px;
+  height: 80px;
+  /* background: #fff; */
+  color: #4b0b73;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.mobile-brand {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* ===== GRID ===== */
+.footer-mobile-top {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 1.8rem;
+}
+
+/* LEFT */
+.footer-mobile-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-section {
+  margin-bottom: 1.4rem;
+}
+
+.mobile-heading {
+  color: #ffcc00;
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 0.35rem;
+  font-family: "lexend deca", sans-serif;
+}
+
+.mobile-email {
+  font-size: 14px;
+  font-weight: 400 ;
+  word-break: break-word;
+  font-family: "lexend deca", sans-serif;
+
+}
+
+/* Social icons */
+.mobile-socials {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 0.5rem;
+}
+
+.mobile-social-icon {
+  width: 25px;
+  height: 36px;
+  /* background: rgba(255,255,255,0.08); */
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+
+/* ===== LEGAL UNDER SOCIALS (FIGMA) ===== */
+.mobile-legal-inline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 14px;
+  opacity: 0.9;
+  margin-top: 0.8rem;
+  font-weight: 300;
+  font-family: "lexend deca", sans-serif;
+}
+
+/* RIGHT */
+.footer-mobile-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  font-size: 14px;
+  padding-top: 0.2rem;
+  font-weight: 400;
+  font-family: "lexend deca", sans-serif;
+}
+
+.mobile-link {
+  line-height: 1.6;
+}
+
+/* DIVIDER */
+.mobile-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.25);
+  margin: 1.8rem 0 1.2rem;
+}
+
+/* BOTTOM */
+.mobile-bottom {
+  text-align: center;
+  font-size: 11.5px;
+}

@@ -35,3 +35,15 @@
   color: #4e156b;
   font-weight: 600;
 }
+@media (max-width: 640px) {
+  .app {
+  /* width: 100%; */
+  min-height: 100vh;
+  background: #fefbff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2rem;
+  overflow-x: clip;
+}
+}

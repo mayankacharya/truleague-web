@@ -7,6 +7,15 @@ import InsightsSVG2 from '../../assets/OnlySVG/insights2.svg';
 import InsightsSVG3 from '../../assets/OnlySVG/insights3.svg';
 
 const InsightsCarousel = () => {
+
+  // 👇 SCREEN WIDTH CHECK
+  const isDesktop = window.innerWidth >= 1024;
+
+  // ❌ Mobile / Tablet me component hi mat dikhao
+  if (!isDesktop) {
+    return null;
+  }
+
   const [scrollProgress, setScrollProgress] = useState(0);
   const containerRef = useRef(null);
 
@@ -17,8 +26,8 @@ const InsightsCarousel = () => {
     { id: 4, title: 'Engage early to reduce melt and boost retention', icon: InsightsSVG3 },
   ];
 
-  const totalSlides = insightCards.length; // 4
-  const perCardScroll = 1 / totalSlides;  // 0.25 each card scroll segment
+  const totalSlides = insightCards.length;
+  const perCardScroll = 1 / totalSlides;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,7 +47,6 @@ const InsightsCarousel = () => {
   return (
     <div ref={containerRef} className="insights-master-container">
       <div className="insights-viewport">
-
         <div
           className="insights-scroll-container"
           style={{
@@ -46,12 +54,10 @@ const InsightsCarousel = () => {
           }}
         >
           {insightCards.map((card, index) => {
-            const start = index * perCardScroll;
-            const end = start + perCardScroll;
-
-            // icon movement inside card only in its scroll window
-            const local = Math.min(1, Math.max(0, (scrollProgress - start) / perCardScroll));
-            const iconShift = local * 300; // distance icon moves
+            const local = Math.min(
+              1,
+              Math.max(0, (scrollProgress - index / totalSlides) * totalSlides)
+            );
 
             return (
               <div key={card.id} className="insights-item">
@@ -73,10 +79,7 @@ const InsightsCarousel = () => {
                         src={card.icon}
                         alt="card icon"
                         className="card-icon"
-                        style={{
-                          transform: `translateX(${iconShift}px)`,
-                          transition: 'transform 0.12s linear'
-                        }}
+                        style={{ transform: `translateX(${local * 300}px)` }}
                       />
                       <p className="card-text">{card.title}</p>
                     </div>
