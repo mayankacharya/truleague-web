@@ -19,7 +19,7 @@ const blockData = [
     lines: [
       'Capture stealth applicants early',
       'Full-full engagement and conversions',
-      'Move students from ',
+      'Move students from',
     ],
     image: inquirySVG,
   },
@@ -461,7 +461,10 @@ const GrowEnrollment = () => {
       
       const newProgress = blockData.map((_, index) => {
         // Start and end points for each card's visibility
-        const cardStart = sectionTop + (cardHeight * index) - viewportHeight * 0.5
+const overlap = viewportHeight * 0.45; // 🔥 overlap amount
+
+const cardStart =
+  sectionTop + (cardHeight * index) - viewportHeight * 0.5 - overlap;
         const cardEnd = sectionTop + (cardHeight * (index + 1)) - viewportHeight * 0.5
         
         // Calculate smooth progress (0 to 1) for this card
@@ -506,41 +509,64 @@ const GrowEnrollment = () => {
         <div className="grow-enrollment__sticky-wrapper">
           {blockData.map((block, index) => {
             const progress = scrollProgress[index] || 0
-            const nextProgress = scrollProgress[index + 1] || 0
-            
-            // Determine if this card is active - WIDER WINDOW for stability
-            const isActive = progress > 0.15 && progress < 0.75
+            const prevProgress = index > 0 ? scrollProgress[index - 1] || 0 : 0
+
+            // Card is active immediately when scrolling starts!
+            const isActive = progress >= 0 && progress < 0.75
             
             const { revealedLines, activeLine } = useTypewriter(block.lines, isActive)
 
-            // 🎨 CLEAR STREET STYLE: Cards slide over each other with EXTENDED overlap
-            let opacity = 0
+            // 🎨 INSTANT START: Card appears at 0% - no delay!
+            let opacity = 1
             let scale = 1
             let translateY = 0
             let blur = 0
-            let zIndex = 10 + index // Base z-index
+            let zIndex = 10 + index
             
-            if (progress <= 0.6) {
-              // 🔽 PHASE 1: Card is COMING IN from bottom (longer window)
-              // Starts invisible below, slides up and becomes visible
-              const comeIn = progress / 0.6 // 0 to 1 (60% of journey)
+            // Get viewport height for calculating bottom position
+            const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 800
+            // 🚫 BEFORE SCROLL — hide cards completely
+if (progress === 0 && index !== 0) {
+  opacity = 0
+  translateY = viewportHeight
+}
+
+            if (progress < 0.75) {
+              // 🔽 Card COMING UP from BOTTOM (0% to 75%)
+              // Starts IMMEDIATELY when scrolling begins!
+                const linkedProgress = Math.max(progress, prevProgress * 0.8)
+
+              const comeIn = progress / 0.75 // 0 to 1
               
-              opacity = Math.min(1, comeIn * 1.5) // Fade in faster, stay at 1 longer
-              scale = 0.92 + (comeIn * 0.08) // 0.92 to 1
-              translateY = (1 - comeIn) * 80 // Start 80px below, slide to 0
-              blur = Math.max(0, (1 - comeIn) * 4) // Start blurred, become sharp
-              zIndex = 10 + index + Math.floor(comeIn * 10) // Increase z-index as it comes forward
+              // opacity = 1 // ✅ ALWAYS 100% SOLID
+              // scale = 1
+              // blur = 0 // ✅ CRYSTAL CLEAR
+              
+              // Smooth slide from viewport bottom to sticky position
+ translateY =
+    (1 - Math.min(1, comeIn)) * (viewportHeight - 120)              
+              // zIndex = 10 + index + 5 // Above fading card
+              
+            } else if (progress >= 0.15) {
+              // 🔼 GOING OUT - starts fading at 2%
+              const goOut = (progress - 0.02) / 0.98 // 0 to 1
+              
+              // ✅ SMOOTH GRADUAL FADE
+              const easedFade = Math.pow(goOut, 2.4)
+              opacity = Math.max(0, 1 - (easedFade * 0.98))
+              
+              scale = 1 - (goOut * 0.02)
+              translateY = -goOut * 50
+              blur = Math.pow(goOut, 0.9) * 2.5
+              zIndex = 10 + index + 20 - Math.floor(goOut * 15)
               
             } else {
-              // 🔼 PHASE 2: Card is GOING OUT to top (shorter window)
-              // Slides up and fades out while next card appears below it
-              const goOut = (progress - 0.6) / 0.4 // 0 to 1 (40% of journey)
-              
-              opacity = Math.max(0.1, 1 - (goOut * 0.9)) // Stay visible longer
-              scale = 1 - (goOut * 0.08) // 1 to 0.92
-              translateY = -goOut * 100 // Slide up to -100px
-              blur = goOut * 6 // Gradually blur as it goes up
-              zIndex = 10 + index + 10 - Math.floor(goOut * 5) // Decrease z-index as it fades
+              // ⭐ Card at sticky (0-2%)
+              opacity = 1
+              scale = 1
+              translateY = 0
+              blur = 0
+              zIndex = 10 + index + 10
             }
 
             return (

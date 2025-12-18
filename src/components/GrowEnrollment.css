@@ -38,8 +38,8 @@
 
 .grow-enrollment__stack-container {
   position: relative;
-  /* 🎯 More scroll space = smoother, more gradual fade transitions */
-  height: calc(100vh * 4); /* Extended for ultra-smooth fade in/fade out */
+  /* 🎯 Extended scroll space for smooth simultaneous overlap */
+  height: calc(100vh * 5); /* More space = smoother overlap */
   max-width: 1120px;
   margin: 0 auto;
 }
@@ -49,6 +49,7 @@
   top: 100px;
   height: 80vh;
   max-height: 600px;
+  overflow: visible; /* ✅ Allow cards to come from bottom */
 }
 
 .grow-block {
