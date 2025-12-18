@@ -15,19 +15,17 @@ const blockData = [
   {
     id: 'inquiry',
     title: 'Inquiry to enrollment',
-    // subtitle: 'Turn early interest into full applications by giving every prospect a confident next step.',
     align: 'left',
     lines: [
       'Capture stealth applicants early',
       'Full-full engagement and conversions',
-      'Move students from ‘maybe’ to ‘yes’',
+      'Move students from ',
     ],
     image: inquirySVG,
   },
   {
     id: 'insights',
     title: 'AI-powered insights',
-    // subtitle: 'Understand patterns across leads so counselors can act faster on the right students.',
     align: 'right',
     lines: [
       'Gain real-time enrollment marketing insights',
@@ -39,7 +37,6 @@ const blockData = [
   {
     id: 'belonging',
     title: 'Foster belonging & trust',
-    // subtitle: 'Keep admitted students energized with community touchpoints that reinforce their choice.',
     align: 'left',
     lines: [
       'Build vibrant admitted student community',
@@ -384,7 +381,7 @@ const BelongingOverlay = ({ isActive }) => {
   )
 }
 
- const useTypewriter = (lines, isActive) => {
+const useTypewriter = (lines, isActive) => {
   const [revealedLines, setRevealedLines] = useState([])
   const [activeLine, setActiveLine] = useState(0)
 
@@ -400,7 +397,7 @@ const BelongingOverlay = ({ isActive }) => {
     const timer = setTimeout(() => {
       setRevealedLines((prev) => [...prev, lines[activeLine]])
       setActiveLine((prev) => prev + 1)
-    }, 700 + activeLine * 150) // natural reading delay
+    }, 700 + activeLine * 150)
 
     return () => clearTimeout(timer)
   }, [activeLine, isActive, lines])
@@ -410,11 +407,6 @@ const BelongingOverlay = ({ isActive }) => {
     activeLine,
   }
 }
-
-
-
-
-
 
 const InquiryQuote = ({ isActive }) => {
   const wordLines = useMemo(() => inquiryQuoteLines.map((line) => line.split(' ')), [])
@@ -449,212 +441,179 @@ const InquiryQuote = ({ isActive }) => {
   )
 }
 
-const EnrollmentBlock = ({
-  block,
-  isActive,
-  setRef,
-  scrollDirection,
-  index,
-  activeIndex,
-  progress: progressProp,
-}) => {
-  const shouldAnimate = isActive || index === 0
-const { revealedLines, activeLine } = useTypewriter(block.lines, shouldAnimate)
-  const stackClass = isActive
-    ? 'stack-active'
-    : index < activeIndex
-    ? 'stack-past'
-    : 'stack-next'
-  const depth = Math.abs(index - activeIndex)
-  const zIndex = isActive ? 1200 : 900 - depth * 50
-  const directionClass = `direction-${scrollDirection}`
-  const progress = Math.max(0, Math.min(1, progressProp ?? 0))
-  let dynamicOpacity = 1
-  let dynamicFilter = 'none'
-
-  if (!isActive) {
-    if (stackClass === 'stack-next') {
-      dynamicOpacity = 0.45 + progress * 0.5
-      const grayscale = Math.max(0, 0.35 - progress * 0.35)
-      dynamicFilter = `saturate(${0.75 + progress * 0.25}) brightness(${0.85 + progress * 0.15}) grayscale(${grayscale})`
-    } else {
-      dynamicOpacity = 0.2 + progress * 0.55
-      const grayscale = Math.max(0, 0.55 - progress * 0.45)
-      dynamicFilter = `saturate(${0.6 + progress * 0.4}) brightness(${0.9 + progress * 0.08}) grayscale(${grayscale})`
-    }
-  }
-
-  return (
-    <article
-      ref={setRef}
-      data-block-id={block.id}
-      data-block-index={index}
-      className={`grow-block ${isActive ? 'active' : ''} ${stackClass} align-${
-        block.align ?? 'left'
-      } ${directionClass}`}
-      style={{ zIndex, opacity: dynamicOpacity, filter: dynamicFilter }}
-    >
-      <div className="grow-block__media">
-        <img src={mediaOverrides[block.id] ?? block.image} alt={block.title} loading="lazy" />
-        {block.id === 'belonging' && <BelongingOverlay isActive={isActive} />}
-        {block.id === 'insights' && (
-          <>
-            <SentimentCard isActive={isActive} />
-            <SentimentFooter isActive={isActive} />
-          </>
-        )}
-        {block.id === 'inquiry' && (
-          <>
-            <span className="inquiry-avatar avatar-one" />
-            <span className="inquiry-avatar avatar-two" />
-            <div className="inquiry-badge">
-              <div className="inquiry-badge__body">
-                <div className="inquiry-badge__avatar">
-                  <img src={inquiryPortrait} alt="Student portrait" loading="lazy" />
-                </div>
-                <div className="inquiry-badge__text">
-                  <InquiryQuote isActive={isActive} />
-                </div>
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-      <div className="grow-block__content">
-        <h3>{block.title}</h3>
-        <p className="grow-block__subtitle">{block.subtitle}</p>
-       <div className="grow-block__lines">
-  {block.lines.map((line, index) => {
-    const isRevealed = index < revealedLines.length
-    const isActive = index === activeLine
-
-    return (
-      <p
-        key={index}
-        className={`reveal-line ${isRevealed ? 'is-visible' : ''} ${
-          isActive ? 'is-active' : ''
-        }`}
-      >
-        <span className="reveal-line__text">{line}</span>
-      </p>
-    )
-  })}
-</div>
-
-
-      </div>
-    </article>
-  )
-}
-
 const GrowEnrollment = () => {
-  const [activeBlock, setActiveBlock] = useState(blockData[0].id)
-  const [activeIndex, setActiveIndex] = useState(0)
-  const blockRefs = useRef([])
-  const [scrollDirection, setScrollDirection] = useState('down')
-  const directionRef = useRef('down')
-  const [highlightProgress, setHighlightProgress] = useState(() => blockData.map(() => 0))
+  const [scrollProgress, setScrollProgress] = useState([0, 0, 0])
+  const sectionRef = useRef(null)
+  const cardsRef = useRef([])
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntries = entries.filter((entry) => entry.isIntersecting)
-
-        if (visibleEntries.length === 0) {
-          return
-        }
-
-        const viewportCenter = (window.innerHeight || 0) / 2
-        const primaryPick = visibleEntries.reduce((best, entry) => {
-          const entryCenter =
-            entry.boundingClientRect.top + entry.boundingClientRect.height / 2
-          const distance = Math.abs(entryCenter - viewportCenter)
-
-          if (!best || distance < best.distance) {
-            return { entry, distance }
-          }
-
-          return best
-        }, null)
-        const primary = primaryPick ? primaryPick.entry : visibleEntries[0]
-
-        setActiveBlock(primary.target.dataset.blockId)
-        setActiveIndex(Number(primary.target.dataset.blockIndex))
-      },
-      { threshold: 0.25, rootMargin: '-30px 0px -40px 0px' }
-    )
-
-    blockRefs.current.forEach((node) => {
-      if (node) {
-        observer.observe(node)
-      }
-    })
-
-    return () => observer.disconnect()
-  }, [])
-  useEffect(() => {
-    if (typeof window === 'undefined') return undefined
-
-    let prevScrollY = window.scrollY || 0
     const handleScroll = () => {
-      const currentScrollY = window.scrollY || 0
-      if (currentScrollY > prevScrollY && directionRef.current !== 'down') {
-        directionRef.current = 'down'
-        setScrollDirection('down')
-      } else if (currentScrollY < prevScrollY && directionRef.current !== 'up') {
-        directionRef.current = 'up'
-        setScrollDirection('up')
-      }
-      prevScrollY = currentScrollY
+      const section = sectionRef.current
+      if (!section) return
 
-      const viewportCenter = (window.innerHeight || 0) / 2
-      const maxDistance = Math.max(120, (window.innerHeight || 0) * 1.4)
+      const sectionTop = section.offsetTop
+      const sectionHeight = section.offsetHeight
+      const scrollY = window.scrollY
+      const viewportHeight = window.innerHeight
+
+      // Calculate progress for each card based on scroll position
+      const cardHeight = sectionHeight / blockData.length
+      
       const newProgress = blockData.map((_, index) => {
-        const node = blockRefs.current[index]
-        if (!node) {
-          return 0
+        // Start and end points for each card's visibility
+        const cardStart = sectionTop + (cardHeight * index) - viewportHeight * 0.5
+        const cardEnd = sectionTop + (cardHeight * (index + 1)) - viewportHeight * 0.5
+        
+        // Calculate smooth progress (0 to 1) for this card
+        if (scrollY < cardStart) {
+          return 0 // Not reached yet
+        } else if (scrollY > cardEnd) {
+          return 1 // Already passed
+        } else {
+          // Smoothly transition from 0 to 1
+          const progress = (scrollY - cardStart) / (cardEnd - cardStart)
+          return Math.max(0, Math.min(1, progress))
         }
-
-        const rect = node.getBoundingClientRect()
-        const center = rect.top + rect.height / 2
-        const distance = Math.abs(center - viewportCenter)
-        const raw = 1 - distance / maxDistance
-        return Math.max(0, Math.min(1, raw))
       })
 
-      setHighlightProgress(newProgress)
+      setScrollProgress(newProgress)
     }
 
-    handleScroll()
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    // Use RAF for butter-smooth updates
+    let rafId
+    const smoothScroll = () => {
+      handleScroll()
+      rafId = requestAnimationFrame(smoothScroll)
+    }
+    
+    rafId = requestAnimationFrame(smoothScroll)
+    
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId)
+    }
   }, [])
 
   return (
-    <section className="grow-enrollment">
+    <section className="grow-enrollment" ref={sectionRef}>
       <div className="grow-enrollment__header">
-        {/* <p className="eyebrow">Increase yield and grow enrollment</p> */}
         <h2>Increase Yield and Grow Enrollment</h2>
         <p>
-         Yield isn’t a moment—it’s a relationship. TruLeague builds that relationship early, sustaining it through personalized, peer-driven engagement and real-time insights.
+          Yield isn't a moment—it's a relationship. TruLeague builds that relationship early, sustaining it through personalized, peer-driven engagement and real-time insights.
         </p>
       </div>
 
-      <div className="grow-enrollment__blocks">
-        {blockData.map((block, index) => (
-          <EnrollmentBlock
-            key={block.id}
-            block={block}
-            isActive={activeBlock === block.id}
-            setRef={(el) => {
-              blockRefs.current[index] = el
-            }}
-            scrollDirection={scrollDirection}
-            index={index}
-            activeIndex={activeIndex}
-            progress={highlightProgress[index] ?? 0}
-          />
-        ))}
+      <div className="grow-enrollment__stack-container">
+        <div className="grow-enrollment__sticky-wrapper">
+          {blockData.map((block, index) => {
+            const progress = scrollProgress[index] || 0
+            const nextProgress = scrollProgress[index + 1] || 0
+            
+            // Determine if this card is active - WIDER WINDOW for stability
+            const isActive = progress > 0.15 && progress < 0.75
+            
+            const { revealedLines, activeLine } = useTypewriter(block.lines, isActive)
+
+            // 🎨 CLEAR STREET STYLE: Cards slide over each other with EXTENDED overlap
+            let opacity = 0
+            let scale = 1
+            let translateY = 0
+            let blur = 0
+            let zIndex = 10 + index // Base z-index
+            
+            if (progress <= 0.6) {
+              // 🔽 PHASE 1: Card is COMING IN from bottom (longer window)
+              // Starts invisible below, slides up and becomes visible
+              const comeIn = progress / 0.6 // 0 to 1 (60% of journey)
+              
+              opacity = Math.min(1, comeIn * 1.5) // Fade in faster, stay at 1 longer
+              scale = 0.92 + (comeIn * 0.08) // 0.92 to 1
+              translateY = (1 - comeIn) * 80 // Start 80px below, slide to 0
+              blur = Math.max(0, (1 - comeIn) * 4) // Start blurred, become sharp
+              zIndex = 10 + index + Math.floor(comeIn * 10) // Increase z-index as it comes forward
+              
+            } else {
+              // 🔼 PHASE 2: Card is GOING OUT to top (shorter window)
+              // Slides up and fades out while next card appears below it
+              const goOut = (progress - 0.6) / 0.4 // 0 to 1 (40% of journey)
+              
+              opacity = Math.max(0.1, 1 - (goOut * 0.9)) // Stay visible longer
+              scale = 1 - (goOut * 0.08) // 1 to 0.92
+              translateY = -goOut * 100 // Slide up to -100px
+              blur = goOut * 6 // Gradually blur as it goes up
+              zIndex = 10 + index + 10 - Math.floor(goOut * 5) // Decrease z-index as it fades
+            }
+
+            return (
+              <article
+                key={block.id}
+                ref={(el) => (cardsRef.current[index] = el)}
+                className={`grow-block align-${block.align ?? 'left'} ${
+                  isActive ? 'active' : ''
+                }`}
+                style={{
+                  opacity,
+                  transform: `translateY(${translateY}px) scale(${scale})`,
+                  filter: `blur(${blur}px)`,
+                  zIndex,
+                  pointerEvents: opacity > 0.5 ? 'auto' : 'none',
+                }}
+              >
+                <div className="grow-block__media">
+                  <img
+                    src={mediaOverrides[block.id] ?? block.image}
+                    alt={block.title}
+                    loading="lazy"
+                  />
+
+                  {block.id === 'belonging' && <BelongingOverlay isActive={isActive} />}
+                  {block.id === 'insights' && (
+                    <>
+                      <SentimentCard isActive={isActive} />
+                      <SentimentFooter isActive={isActive} />
+                    </>
+                  )}
+                  {block.id === 'inquiry' && (
+                    <>
+                      <span className="inquiry-avatar avatar-one" />
+                      <span className="inquiry-avatar avatar-two" />
+                      <div className="inquiry-badge">
+                        <div className="inquiry-badge__body">
+                          <div className="inquiry-badge__avatar">
+                            <img src={inquiryPortrait} alt="Student portrait" loading="lazy" />
+                          </div>
+                          <div className="inquiry-badge__text">
+                            <InquiryQuote isActive={isActive} />
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                <div className="grow-block__content">
+                  <h3>{block.title}</h3>
+                  <p className="grow-block__subtitle">{block.subtitle}</p>
+                  <div className="grow-block__lines">
+                    {block.lines.map((line, i) => {
+                      const isVisible = i < revealedLines.length
+                      const isTyping = i === activeLine
+                      return (
+                        <p
+                          key={i}
+                          className={`reveal-line ${isVisible ? 'is-visible' : ''} ${
+                            isTyping ? 'is-active' : ''
+                          }`}
+                        >
+                          <span className="reveal-line__text">{line}</span>
+                        </p>
+                      )
+                    })}
+                  </div>
+                </div>
+              </article>
+            )
+          })}
+        </div>
       </div>
     </section>
   )
