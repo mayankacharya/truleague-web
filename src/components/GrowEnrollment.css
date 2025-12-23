@@ -1,934 +1,419 @@
+/* ================= CONTAINER ================= */
+
 .grow-enrollment {
-  padding: 2rem 1rem 4rem;
   width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
+  background: #f6f5fb;
 }
 
+/* ================= HEADER ================= */
+
 .grow-enrollment__header {
-  text-align: center;
   max-width: 760px;
-  margin: 0 auto 3rem;
+  margin: 0 auto 4rem;
+  text-align: center;
+  padding: 0 1rem;
 }
 
 .grow-enrollment__header h2 {
-  margin: 0.4rem 0;
-  color: #4E156B;
-  font-family: "sora", sans-serif;
   font-size: 44px;
-  font-weight: 622;
-  white-space: nowrap;
+  color: #4E156B;
+  margin-bottom: 0.75rem;
 }
 
 .grow-enrollment__header p {
-  margin: 0;
+  font-size: 20px;
+  line-height: 1.6;
   color: #404040;
-  line-height: 1.7;
-  font-size: 24px;
-  font-weight: 300;
-  font-family: "lexend deca", sans-serif;
 }
 
-/* ================================
-   CLEAR STREET-STYLE STACKING
-   All cards overlap at same position
-================================ */
+/* ================= STICKY ================= */
 
-.grow-enrollment__stack-container {
-  position: relative;
-  /* 🎯 Extended scroll space for smooth simultaneous overlap */
-  height: calc(100vh * 5); /* More space = smoother overlap */
-  max-width: 1120px;
-  margin: 0 auto;
-}
-
-.grow-enrollment__sticky-wrapper {
+.sticky-stage {
   position: sticky;
-  top: 100px;
-  height: 80vh;
-  max-height: 600px;
-  overflow: visible; /* ✅ Allow cards to come from bottom */
-}
-
-.grow-block {
-  /* CRITICAL: All cards stack at exact same position */
-  position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-areas: 'media content';
-  gap: 1.5rem;
-  padding: 2rem;
-  border-radius: 25px;
-  min-height: 420px;
-  width: 100%;
-  max-width: 1120px;
-  margin: 0 auto;
-  align-items: center;
-  
-  /* 🎯 NO CSS transitions - scroll controls everything for smoothness */
-  transition: none;
-  
-  /* Hardware acceleration for 60fps performance */
-  will-change: transform, opacity;
-  transform-origin: center center;
-  backface-visibility: hidden;
-}
-
-.grow-block[data-block-id='inquiry'],
-.grow-block.align-left:nth-child(1) {
-  background: #CDD4FF;
-}
-
-.grow-block[data-block-id='insights'],
-.grow-block.align-right:nth-child(2) {
-  background: #E1C8DE;
-}
-
-.grow-block[data-block-id='belonging'],
-.grow-block.align-left:nth-child(3) {
-  background: #CDD4FF;
-}
-
-/* Active state */
-.grow-block.active {
-  box-shadow: 
-    0 30px 70px rgba(58, 29, 102, 0.25),
-    0 10px 30px rgba(36, 14, 80, 0.15);
-}
-
-.grow-block__media,
-.grow-block__content {
-  position: relative;
-  z-index: 2;
-}
-
-.grow-block__media {
-  grid-area: media;
+  height: 100vh;
+  display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem;
-  position: relative;
-  height: 100%;
 }
 
-/* ================================
-   SENTIMENT CARD (INSIGHTS)
-================================ */
+/* ================= CARD ================= */
 
-.conversation-sentiment {
+.enroll-card {
   position: absolute;
-  top: 11.2rem;
-  right: 1.6rem;
-  background: #ffffff;
+  width: 100%;
+  max-width: 1120px;
+  min-height: 580px;
+  padding: 64px;
   border-radius: 28px;
-  padding: 22px;
-  border: 1px solid rgba(78, 21, 107, 0.18);
-  z-index: 10;
-  font-family: "lexend deca", sans-serif;
-  color: #494F73;
-}
+  box-shadow: 0 50px 120px rgba(0, 0, 0, 0.14);
 
-.conversation-sentiment__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 18px;
-}
-
-.conversation-sentiment__title {
-  font-size: 14px;
-  font-weight: 400;
-  color: #4E156B;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.conversation-sentiment__ai {
-  font-size: 14px;
-  font-weight: 400;
-  color: #352764;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.conversation-sentiment__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 48px;
+  align-items: center;
+
+  will-change: transform, opacity;
 }
 
-.sentiment-box {
-  border-radius: 18px;
-  padding: 16px 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+/* TEXT */
+
+.enroll-card__content h3 {
+  font-size: 32px;
+  color: #4E156B;
+  margin-bottom: 16px;
 }
 
-.sentiment-box__top {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  font-weight: 400;
-  gap: inherit;
+.enroll-card__content ul {
+  padding-left: 18px;
 }
 
-.sentiment-box__value {
+.enroll-card__content li {
   font-size: 18px;
-  font-weight: 500;
-  line-height: 1;
+  line-height: 1.6;
+  margin-bottom: 8px;
 }
 
-.sentiment-box.very-positive {
-  background: #ECF6EE;
-  color: #494F73;
+.enroll-card__image {
+  position: relative;
 }
 
-.sentiment-box.positive {
-  background: #EBF2FD;
-  color: #494F73;
+.main-image {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
 }
 
-.sentiment-box.neutral {
-  background: #FAF1EB;
-  color: #494F73;
-}
-
-.sentiment-box.negative {
-  background: #FCE7EB;
-  color: #494F73;
-}
-
-/* ================================
-   SENTIMENT FOOTER (INSIGHTS)
-================================ */
-
-.sentiment-footer-figma {
+/* small round images */
+.corner-avatar {
   position: absolute;
-  bottom: -3.4rem;
-  left: -1.6rem;
-  background: #ffffff;
-  border-radius: 15px;
-  padding: 18px 26px;
-  box-shadow: 0 18px 40px rgba(40, 16, 90, 0.22);
-  border: 1px solid rgba(78, 21, 107, 0.18);
-  z-index: 10;
-  text-align: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  background: #fff;
 }
 
-.sentiment-footer-figma__line {
-  margin: 0;
-  font-family: "lexend deca", sans-serif;
-  line-height: 1.35;
+/* positions */
+.corner-avatar.top-left {
+  top: 20px;
+  left: -45px;
+  width: 99px;
+    height: 99px;
+    border-radius:999px
 }
 
-.sentiment-footer-figma__line--primary {
-  font-size: 16px;
-  font-weight: 400;
-  color: #494F73;
+.corner-avatar.bottom-right {
+  bottom: 120px;
+  right: -45px;
+  width: 80px;
+    height: 80px;
+    border-radius:999px
 }
 
-.sentiment-footer-figma__line--alert {
-  margin-top: 6px;
-  font-size: 16px;
-  font-weight: 400;
-  color: #DB5400;
+
+/* IMAGE */
+
+.enroll-card__image img {
+  /* width: 100%; */
+  border-radius: 20px;
+  object-fit: cover;
+  /* box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25); */
+      width: 370px;
+    height: 520px;
 }
 
-/* ================================
-   INQUIRY BLOCK ELEMENTS
-================================ */
+/* ================= ALIGNMENT (DESKTOP) ================= */
 
-.inquiry-avatar {
+.layout-left {
+  direction: rtl;
+}
+
+.layout-left > * {
+  direction: ltr;
+}
+
+.layout-right {
+  direction: ltr;
+}
+
+/* ================= PREMIUM HEADING REVEAL ================= */
+
+.card-heading {
+  position: relative;
+  overflow: hidden;
+  font-size: 32px;
+  color: #4E156B;
+  margin-bottom: 16px;
+}
+
+.card-heading span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+/* visible state */
+.card-heading.heading-visible span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* subtle highlight sweep */
+.card-heading::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(124, 92, 255, 0.35),
+    transparent
+  );
+  transform: translateX(-120%);
+  transition: transform 0.9s ease;
+  pointer-events: none;
+}
+
+.card-heading.heading-visible::after {
+  transform: translateX(120%);
+}
+
+/* ================= TYPEWRITER POINTS ================= */
+
+.typing-list {
+  list-style: disc;
+  padding-left: 18px;
+}
+
+.typing-list li {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  color: #2d1b4f;
+  opacity: 0.95;
+}
+
+.typing-text {
+  display: inline-block;
+  animation: fadeSlideIn 0.25s ease-out;
+}
+
+/* blinking caret */
+.typing-caret {
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 1s steps(1) infinite;
+  color: #6b4eff;
+  font-weight: 600;
+}
+
+/* subtle entry animation */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* caret blink */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ================= Inquiry Image Layout ================= */
+
+.inquiry-image {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.main-enquiry-img {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 22px;
+  z-index: 1;
+}
+
+/* floating avatars */
+.avatar {
   position: absolute;
   width: 64px;
   height: 64px;
   border-radius: 50%;
   border: 3px solid #fff;
-  background-size: cover;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
-}
-
-.inquiry-avatar.avatar-one {
-  top: 40px;
-  left: -37px;
-  width: 92px;
-  height: 92px;
-  background-image: url('../assets/onlySVG/mwn1.svg');
-}
-
-.inquiry-avatar.avatar-two {
-  bottom: 200px;
-  right: 72px;
-  background-image: url('../assets/onlySVG/avator2.svg');
-  width: 80px;
-  height: 80px;
-}
-
-.inquiry-badge {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  background: rgba(255, 255, 255, 0.96);
-  border-radius: 16px;
-  padding: 0.75rem 1rem;
-  box-shadow: 0 14px 34px rgba(34, 13, 80, 0.25);
-  width: 320px;
-  font-size: 0.85rem;
-  color: #24164f;
-  border: 1px solid rgba(78, 21, 107, 0.18);
-}
-
-.inquiry-badge__body {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.inquiry-badge__avatar {
-  flex-shrink: 0;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid rgba(78, 21, 107, 0.15);
-  box-shadow: 0 8px 18px rgba(34, 13, 80, 0.2);
-}
-
-.inquiry-badge__avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.inquiry-badge__text {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.inquiry-badge__text p {
-  margin: 0;
-  font-size: 0.75rem;
-  line-height: 1.3;
-  color: #1f1737;
-  letter-spacing: 0.01em;
-}
-
-.inquiry-badge__line {
-  margin: 0;
-  min-height: 1.3rem;
-}
-
-.inquiry-badge__word {
-  display: inline-block;
-  margin-right: 0.25rem;
-  opacity: 0;
-  animation: fadeInWord 0.3s ease forwards;
-}
-
-@keyframes fadeInWord {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ================================
-   BELONGING BLOCK ELEMENTS
-================================ */
-
-.belonging-overlay {
-  position: absolute;
-  inset: 1.2rem 1.2rem 1rem 1.2rem;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
   z-index: 3;
-  pointer-events: none;
 }
 
-.belonging-messages {
-  position: relative;
-  width: 100%;
-  height: 100%;
+.avatar-left {
+  top: -20px;
+  left: 10%;
 }
 
-.belonging-message {
+.avatar-right {
+  top: 30px;
+  right: 8%;
+}
+
+/* chat bubble */
+.chat-bubble {
   position: absolute;
-  margin: 0;
-  width: min(280px, 85%);
-  padding: 0.9rem 1.1rem;
-  border-radius: 26px;
-  border: 1px solid rgba(127, 97, 255, 0.35);
-  background: rgba(255, 255, 255, 0.98);
-  color: #1f1335;
-  box-shadow: 0 18px 28px rgba(69, 38, 138, 0.2);
-  animation: fadeInMessage 0.45s ease forwards;
+  bottom: -24px;
+  left: 12%;
   display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
+  gap: 10px;
+  align-items: center;
+  background: #fff;
+  padding: 12px 14px;
+  border-radius: 14px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+  z-index: 4;
+  max-width: 280px;
 }
 
-.belonging-message__avatar {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid rgba(78, 21, 107, 0.2);
-  box-shadow: 0 10px 20px rgba(78, 21, 107, 0.25);
-  flex-shrink: 0;
-}
-
-.belonging-message__avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.belonging-message__text {
-  margin: 0;
-  font-size: 0.78rem;
-  line-height: 1.45;
-  letter-spacing: 0.02em;
-  color: #1f1335;
-}
-
-.belonging-message--left {
-  top: 0;
-  left: 0;
-}
-
-.belonging-message--right {
-  top: 6.6rem;
-  right: 0;
-}
-
-@keyframes fadeInMessage {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.admission-stage-card {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: min(232px, 60%);
-  background: linear-gradient(180deg, #ffffff, #f7f1ff);
-  border-radius: 16px;
-  padding: 0.25rem 0.4rem 0.35rem;
-  box-shadow: 0 16px 24px rgba(50, 20, 105, 0.25), 0 0 20px rgba(143, 105, 255, 0.2);
-  border: 1px solid rgba(144, 91, 255, 0.3);
-}
-
-.admission-stage-card__title {
-  margin: 11px 7px 1.55rem;
+.chat-bubble p {
   font-size: 14px;
-  font-weight: 400;
-  color: #4E156B;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.admission-stage-card__marker {
-  font-size: 0.75rem;
-  color: #7b52ff;
-}
-
-.admission-stage-card__row {
-  border-radius: 16px;
-  padding: 0.25rem 0.4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-  margin-bottom: 0.25rem;
-}
-
-.admission-stage-card__row--interested {
-  background: #fef3d8;
-}
-
-.admission-stage-card__row--applied {
-  background: #f6ecff;
-}
-
-.admission-stage-card__row--enrolled {
-  background: #e2f4dd;
-}
-
-.admission-stage-card__label {
-  font-size: 0.75rem;
-  color: #3c2460;
-  letter-spacing: 0.02em;
-}
-
-.admission-stage-card__value {
-  font-size: 0.85rem;
-  color: #1d0e3b;
-}
-
-.admission-stage-card__label-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.admission-stage-card__bar {
-  width: 100%;
-  height: 7px;
-  border-radius: 999px;
-  background: rgba(129, 94, 255, 0.15);
-  overflow: hidden;
-}
-
-.admission-stage-card__fill {
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, #8c6bff, #b55dff);
-  width: 0;
-  transition: width 0.9s ease;
-}
-
-/* ================================
-   CONTENT SECTION
-================================ */
-
-.grow-block__content {
-  grid-area: content;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.75rem;
-  padding-right: 0.5rem;
-  padding-top: 0;
-  padding-bottom: 0;
-  height: auto;
-  align-self: center;
-  margin-top: 0;
-}
-
-.grow-block.align-left {
-  grid-template-areas: 'content media';
-}
-
-.grow-block__content h3 {
+  line-height: 1.4;
+  color: #2d1b4f;
   margin: 0;
-  color: #4E156B;
-  font-size: 1.75rem;
 }
 
-.grow-block__subtitle {
-  margin: 0.35rem 0 1rem;
-  color: #4c3c90;
-  line-height: 1.5;
+.chat-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
 }
 
-.grow-block__lines {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  min-height: 5.5rem;
-}
+/* ================= AI – CONVERSATION SENTIMENT ================= */
 
-/* ================================
-   REVEAL LINE ANIMATIONS
-================================ */
-
-.reveal-line {
-  position: relative;
-  margin: 0;
-  font-size: 1.05rem;
-  font-weight: 500;
-  line-height: 1.55;
-  color: #000;
-  overflow: hidden;
-  transition: opacity 0.35s ease, transform 0.35s ease;
-}
-
-.reveal-line__text {
-  position: relative;
-  z-index: 2;
-  opacity: 0;
-  transition: opacity 0.35s ease;
-}
-
-.reveal-line::before {
-  content: '';
+.sentiment-card {
   position: absolute;
-  inset: -2px -6px;
-  background: linear-gradient(
-    90deg,
-    rgba(94, 62, 213, 0.18),
-    rgba(186, 156, 255, 0.35),
-    rgba(94, 62, 213, 0.18)
-  );
-  transform: translateX(-110%);
-  transition: transform 0.7s ease;
-  z-index: 1;
+  top: 40px;
+  left: -40px;
+  width: 260px;
+  background: #fff;
+  padding: 14px;
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+  z-index: 5;
+}
+
+.sentiment-header {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4E156B;
+  margin-bottom: 10px;
+}
+
+.sentiment-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.sentiment-box {
   border-radius: 10px;
+  padding: 8px;
+  font-size: 12px;
 }
 
-.reveal-line.is-active {
-  transform: scale(1.015);
+.sentiment-box strong {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
 }
 
-.reveal-line.is-active::before {
-  transform: translateX(0%);
-  box-shadow: 0 0 18px rgba(124, 92, 255, 0.35);
+.sentiment-box.very {
+  background: #EAF8F1;
+  color: #1E9C62;
 }
 
-.reveal-line.is-visible::before {
-  transform: translateX(110%);
+.sentiment-box.neutral {
+  background: #F2F3F7;
+  color: #555;
 }
 
-.reveal-line.is-visible .reveal-line__text {
-  opacity: 1;
+.sentiment-box.negative {
+  background: #FDECEC;
+  color: #D64545;
 }
 
-.reveal-line.is-visible:not(.is-active) {
-  opacity: 0.72;
+.sentiment-footer {
+  position: absolute;
+  bottom: -28px;
+  left: -20px;
+  max-width: 280px;
+  background: #fff;
+  padding: 10px 14px;
+  border-radius: 14px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.16);
+  font-size: 13px;
+  line-height: 1.4;
+  z-index: 5;
 }
 
-/* ================================
-   RESPONSIVE DESIGN
-================================ */
-
-@media (max-width: 1000px) {
-  .grow-enrollment__stack-container {
-    height: auto;
-  }
-
-  .grow-enrollment__sticky-wrapper {
-    position: relative;
-    height: auto;
-    top: auto;
-  }
-
-  .grow-block {
-    position: relative;
-    margin-bottom: 2rem;
-    grid-template-columns: 1fr;
-    text-align: left;
-  }
-
-  .grow-block__media,
-  .grow-block__content {
-    grid-column: 1;
-  }
-
-  .grow-block__media {
-    grid-row: 1;
-    min-height: 0;
-  }
-
-  .grow-block__content {
-    grid-row: 2;
-  }
-
-  .conversation-sentiment {
-    position: static;
-    transform: none;
-    width: 100%;
-    margin-top: 1rem;
-    box-shadow: none;
-    border: 1px solid rgba(78, 21, 107, 0.12);
-  }
-
-  .sentiment-footer-figma {
-    position: static;
-    margin-top: 0.75rem;
-    width: 100%;
-    box-shadow: none;
-    border: 1px solid rgba(78, 21, 107, 0.18);
-  }
-
-  .inquiry-badge {
-    position: static;
-    width: 100%;
-    margin-top: 1rem;
-    box-shadow: 0 12px 20px rgba(34, 13, 80, 0.2);
-  }
-
-  .belonging-overlay {
-    position: static;
-    width: 100%;
-    margin-top: 1rem;
-    height: auto;
-  }
-
-  .belonging-messages {
-    position: static;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
-  }
-
-  .belonging-message {
-    position: static;
-    width: 100%;
-  }
-
-  .admission-stage-card {
-    position: static;
-    width: 100%;
-    margin-top: 0.9rem;
-  }
+.sentiment-footer span {
+  color: #D64545;
+  font-weight: 500;
 }
+
+
+/* ================= 📱 MOBILE FIX ================= */
 
 @media (max-width: 600px) {
-  .grow-enrollment {
-    padding: 0 0 3rem;
-  }
-  
   .grow-enrollment__header h2 {
-    margin: 0.4rem 0;
-    color: #4E156B;
-    font-family: "sora", sans-serif;
-    font-size: 44px;
-    font-weight: 622;
-    white-space: break-spaces;
+    font-size: 32px;
   }
 
-  .grow-block {
-    padding: 2.2rem 1.5rem 2.5rem;
-    width: min(360px, 88vw);
-    margin: 1.5rem auto;
-    background: linear-gradient(180deg, #e1e4ff 0%, #dbd1ff 55%, #f3e7ff 100%) !important;
-    border-radius: 36px;
-    box-shadow: 0 25px 55px rgba(38, 8, 97, 0.28);
-    grid-template-columns: 1fr;
-    text-align: center;
-    min-height: 520px;
-    overflow: visible;
-    display: flex;
-    flex-direction: column;
+  .grow-enrollment__header p {
+    font-size: 18px;
   }
 
-  .grow-block__content {
-    order: 0;
-    padding: 0;
-    margin: 0 auto 1.5rem;
-    text-align: center;
+  .sticky-stage {
+    height: 100vh;
   }
 
-  .grow-block__content h3 {
-    font-size: 2.1rem;
+  .enroll-card {
+    grid-template-columns: 1fr;     /* 🔥 single column */
+    gap: 24px;
+    padding: 32px 24px;
+    min-height: auto;
   }
 
-  .grow-block__media {
+  /* 🔥 FORCE ORDER: TEXT FIRST, IMAGE SECOND */
+  .enroll-card__content {
     order: 1;
-    position: relative;
-    margin-top: 0;
-    overflow: visible;
-  }
-
-  .grow-block__media img {
-    width: 100%;
-    max-width: 280px;
-    height: auto;
-    border-radius: 34px;
-    object-fit: cover;
-    box-shadow: 0 18px 40px rgba(21, 5, 78, 0.35);
-  }
-
-  .grow-block__lines {
-    margin-top: 1rem;
-    align-items: flex-start;
-    gap: 0.5rem;
-    max-width: 260px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .grow-block__lines .reveal-line {
     text-align: left;
-    white-space: normal;
-    font-size: 1rem;
   }
 
-  .belonging-overlay,
-  .admission-stage-card,
-  .grow-block__subtitle {
-    display: none;
+  .enroll-card__image {
+    order: 2;
   }
 
-  .grow-block[data-block-id='inquiry'] .inquiry-avatar {
-    display: block;
-    position: absolute;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    border: 3px solid #fff;
-    box-shadow: 0 12px 30px rgba(22, 5, 60, 0.35);
-    z-index: 10;
+  /* 🔥 disable RTL tricks on mobile */
+  .layout-left,
+  .layout-right {
+    direction: ltr;
   }
-
-  .grow-block[data-block-id='inquiry'] .inquiry-avatar.avatar-one {
-    top: 30px;
-    left: calc(50% - 170px);
-    width: 90px;
-    height: 90px;
-  }
-
-  .grow-block[data-block-id='inquiry'] .inquiry-avatar.avatar-two {
-    top: 130px;
-    right: -20px;
-    width: 70px;
-    height: 70px;
-  }
-
-  .grow-block[data-block-id='inquiry'] .inquiry-badge {
-    display: block;
-    position: absolute;
-    bottom: 1rem;
-    left: 34%;
-    transform: translateX(-50%);
-    width: calc(100% - 0rem);
-    background: #fff;
-    border-radius: 20px;
-    padding: 0.9rem;
-    box-shadow: 0 12px 35px rgba(41, 12, 109, 0.25);
-    z-index: 10;
-  }
-
-  .grow-block[data-block-id='insights'] .conversation-sentiment {
-    display: block;
-    position: absolute;
-    top: 1rem;
-    right: -3.5rem;
-    width: min(240px, 65%);
-    font-size: 0.7rem;
-    padding: 0.8rem;
-    z-index: 10;
-  }
-
-  .grow-block[data-block-id='insights'] .conversation-sentiment__header {
-    font-size: 0.6rem;
-  }
-
-  .grow-block[data-block-id='insights'] .conversation-sentiment__percent {
-    font-size: 0.7rem;
-  }
-
-  .grow-block[data-block-id='insights'] .sentiment-box__value {
-    font-size: 1rem;
-  }
-
-  .grow-block[data-block-id='insights'] .sentiment-box__label {
-    font-size: 0.55rem;
-  }
-
-  .grow-block[data-block-id='insights'] .conversation-sentiment__summary {
-    font-size: 0.65rem;
-  }
-
-  .grow-block[data-block-id='insights'] .sentiment-box__item {
-    min-height: 50px;
-  }
-
-  .grow-block[data-block-id='insights'] .sentiment-footer-figma {
-    display: block;
-    position: absolute;
-    bottom: 0.5rem;
-    left: -3.5rem;
-    width: min(220px, 60%);
-    font-size: 0.7rem;
-    padding: 0.6rem 0.8rem;
-    z-index: 10;
-  }
-
-  .grow-block[data-block-id='insights'] .sentiment-footer-figma__headline {
-    font-size: 0.75rem;
-  }
-
-  .grow-block[data-block-id='insights'] .sentiment-footer-figma__summary {
-    font-size: 0.65rem;
-  }
-
-  .grow-block[data-block-id='belonging'] .belonging-overlay {
-    display: block;
-    position: absolute;
-    inset: 0.5rem;
-    z-index: 10;
-    pointer-events: none;
-  }
-
-  .grow-block[data-block-id='belonging'] .belonging-messages {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-
-  .grow-block[data-block-id='belonging'] .belonging-message {
-    display: flex;
-    position: absolute;
-    width: min(240px, 75%);
-    padding: 0.7rem 0.9rem;
-    border-radius: 20px;
-    font-size: 0.7rem;
-  }
-
-  .grow-block[data-block-id='belonging'] .belonging-message__avatar {
-    width: 38px;
-    height: 38px;
-  }
-
-  .grow-block[data-block-id='belonging'] .belonging-message__text {
-    font-size: 0.7rem;
-  }
-
-  .grow-block[data-block-id='belonging'] .belonging-message--left {
-    top: 0.5rem;
-    left: 0;
-  }
-
-  .grow-block[data-block-id='belonging'] .belonging-message--right {
-    top: 6rem;
-    right: -36px;
-  }
-
-  .grow-block[data-block-id='belonging'] .admission-stage-card {
-    display: block;
-    position: absolute;
-    bottom: 0.5rem;
-    left: -3.5rem;
-    width: min(200px, 55%);
-    padding: 0.5rem;
-    font-size: 0.7rem;
-  }
-
-  .grow-block[data-block-id='belonging'] .admission-stage-card__title {
-    font-size: 0.75rem;
-    margin: 0.5rem 0.3rem 1rem;
-  }
-
-  .grow-block[data-block-id='belonging'] .admission-stage-card__label {
-    font-size: 0.7rem;
-  }
-
-  .grow-block[data-block-id='belonging'] .admission-stage-card__value {
-    font-size: 0.75rem;
-  }
+  .enroll-card__image img {
+  /* width: 100%; */
+  border-radius: 20px;
+  object-fit: cover;
+  /* box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25); */
+      width: 252px;
+    height: 305px;
+}
 }
