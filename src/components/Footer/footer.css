@@ -188,6 +188,7 @@
 .footer-logo {
   display: flex;
   align-items: center;
+  margin: 0px 0px 27px 0px;
 }
 
 .footer-logo-img {
