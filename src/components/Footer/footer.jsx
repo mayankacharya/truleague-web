@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./footer.css";   // 👈 tumhara existing web css
 // import "./footer-mobile.css"; // 👈 mobile ke liye naya
+import footerLogo from "../../assets/OnlySVG/footer-logo.svg";
+import emailIcon from "../../assets/OnlySVG/email.svg";
 
 const Footer = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -21,8 +23,14 @@ const Footer = () => {
 
           {/* TOP CENTER */}
           <div className="mobile-top-center">
-            <div className="mobile-logo">🎓</div>
-            <div className="mobile-brand">TruLeague</div>
+           <div className="mobile-logo">
+  <img
+    src={footerLogo}
+    alt="TruLeague Logo"
+    className="mobile-footer-logo"
+  />
+</div>
+
           </div>
 
           {/* MAIN GRID */}
@@ -102,8 +110,13 @@ const Footer = () => {
           <div className="footer-top">
 
             <div className="footer-left">
-              <div className="footer-logo-icon">🎓</div>
-              <p className="footer-title">TruLeague</p>
+              <div className="footer-logo">
+    <img
+      src={footerLogo}
+      alt="TruLeague Logo"
+      className="footer-logo-img"
+    />
+  </div>
 
               <nav className="footer-nav-links-left">
                 {[
@@ -124,12 +137,18 @@ const Footer = () => {
             <div className="footer-right">
               <div className="contact-block">
                 <p className="footer-heading">Contact Us</p>
-                <a
-                  className="footer-contact-email"
-                  href="mailto:support@truleague.com"
-                >
-                  support@truleague.com
-                </a>
+               <a
+  className="footer-contact-email"
+  href="mailto:support@truleague.com"
+>
+  <img
+    src={emailIcon}
+    alt="Email"
+    className="email-icon"
+  />
+  <span>support@truleague.com</span>
+</a>
+
               </div>
 
               <div className="social-block">

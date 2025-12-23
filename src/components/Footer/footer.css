@@ -180,6 +180,32 @@
    MOBILE & SMALL SCREENS
    (These rules create the mobile screenshot layout)
    ========================= */
+.mobile-footer-logo {
+  width: 140px;     /* figma ke hisaab se adjust */
+  height: auto;
+  display: block;
+}
+.footer-logo {
+  display: flex;
+  align-items: center;
+}
+
+.footer-logo-img {
+  width: 160px;   /* web ke liye thoda bada */
+  height: auto;
+}
+.footer-contact-email {
+  display: flex;
+  align-items: center;
+  gap: 10px;               /* icon aur text ke beech space */
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.email-icon {
+  width: 21px;             /* figma ke close */
+  height: 21px;
+}
 
 /* Generic small screens: allow nav to wrap and stack columns */
 @media (max-width: 900px) {
