@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
-import "./footer.css";   // 👈 tumhara existing web css
-// import "./footer-mobile.css"; // 👈 mobile ke liye naya
+import "./footer.css";
 import footerLogo from "../../assets/OnlySVG/footer-logo.svg";
 import emailIcon from "../../assets/OnlySVG/email.svg";
+
+import twitterIcon from "../../assets/OnlySVG/twitor.svg";
+import facebookIcon from "../../assets/OnlySVG/facebook.svg";
+import instagramIcon from "../../assets/OnlySVG/insta1.svg";
+import googleIcon from "../../assets/OnlySVG/google.svg";
+import youtubeIcon from "../../assets/OnlySVG/youtube.svg";
+import linkedinIcon from "../../assets/OnlySVG/linkdin.svg";
 
 const Footer = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -14,50 +20,46 @@ const Footer = () => {
   }, []);
 
   /* =====================
-     MOBILE FOOTER (FIGMA)
+     MOBILE FOOTER
      ===================== */
   if (isMobile) {
     return (
       <footer className="footer-mobile">
         <div className="footer-mobile-inner">
 
-          {/* TOP CENTER */}
           <div className="mobile-top-center">
-           <div className="mobile-logo">
-  <img
-    src={footerLogo}
-    alt="TruLeague Logo"
-    className="mobile-footer-logo"
-  />
-</div>
-
+            <div className="mobile-logo">
+              <img
+                src={footerLogo}
+                alt="TruLeague Logo"
+                className="mobile-footer-logo"
+              />
+            </div>
           </div>
 
-          {/* MAIN GRID */}
           <div className="footer-mobile-top">
-
-            {/* LEFT COLUMN */}
             <div className="footer-mobile-left">
-
               <div className="mobile-section">
                 <div className="mobile-heading">Contact Us</div>
-                <div className="mobile-email">
-                  support@truleague.com
-                </div>
+                <div className="mobile-email">support@truleague.com</div>
               </div>
 
               <div className="mobile-section">
                 <div className="mobile-heading">Connect with Us</div>
 
                 <div className="mobile-socials">
-                  {["X", "f", "IG", "G", "YT", "in"].map((i) => (
-                    <span key={i} className="mobile-social-icon">
-                      {i}
-                    </span>
-                  ))}
+                  {[twitterIcon, facebookIcon, instagramIcon, googleIcon, youtubeIcon, linkedinIcon].map(
+                    (icon, i) => (
+                      <img
+                        key={i}
+                        src={icon}
+                        alt="social"
+                        className="mobile-social-icon-img"
+                      />
+                    )
+                  )}
                 </div>
 
-                {/* ✅ FIGMA: LEGAL LINKS UNDER SOCIAL ICONS */}
                 <div className="mobile-legal-inline">
                   <span>Privacy Policy</span>
                   <span>Terms of Use</span>
@@ -66,7 +68,6 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* RIGHT COLUMN */}
             <div className="footer-mobile-right">
               {[
                 "Home",
@@ -83,24 +84,18 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* DIVIDER */}
           <div className="mobile-divider" />
 
-          {/* BOTTOM */}
           <div className="mobile-bottom">
             ©2025 TruLeague. All rights reserved.
           </div>
-
         </div>
       </footer>
     );
   }
 
-
-
-
   /* =====================
-     WEB FOOTER (AS IT IS)
+     WEB FOOTER
      ===================== */
   return (
     <footer className="footer-outer">
@@ -108,15 +103,14 @@ const Footer = () => {
         <div className="footer-inner">
 
           <div className="footer-top">
-
             <div className="footer-left">
               <div className="footer-logo">
-    <img
-      src={footerLogo}
-      alt="TruLeague Logo"
-      className="footer-logo-img"
-    />
-  </div>
+                <img
+                  src={footerLogo}
+                  alt="TruLeague Logo"
+                  className="footer-logo-img"
+                />
+              </div>
 
               <nav className="footer-nav-links-left">
                 {[
@@ -137,34 +131,40 @@ const Footer = () => {
             <div className="footer-right">
               <div className="contact-block">
                 <p className="footer-heading">Contact Us</p>
-               <a
-  className="footer-contact-email"
-  href="mailto:support@truleague.com"
->
-  <img
-    src={emailIcon}
-    alt="Email"
-    className="email-icon"
-  />
-  <span>support@truleague.com</span>
-</a>
-
+                <a
+                  className="footer-contact-email"
+                  href="mailto:support@truleague.com"
+                >
+                  <img src={emailIcon} alt="Email" className="email-icon" />
+                  <span>support@truleague.com</span>
+                </a>
               </div>
 
+              {/* ✅ UPDATED SOCIAL BLOCK (SVG ICONS) */}
               <div className="social-block">
                 <p className="footer-heading footer-heading--social">
                   Connect with Us
                 </p>
+
                 <div className="footer-socials">
-                  {["X", "f", "in", "ig", "G", "YT"].map((s) => (
-                    <span key={s} className="social-icon">
-                      {s}
-                    </span>
+                  {[
+                    twitterIcon,
+                    facebookIcon,
+                    instagramIcon,
+                    googleIcon,
+                    youtubeIcon,
+                    linkedinIcon,
+                  ].map((icon, index) => (
+                    <img
+                      key={index}
+                      src={icon}
+                      alt="social"
+                      className="social-icon-img"
+                    />
                   ))}
                 </div>
               </div>
             </div>
-
           </div>
 
           <div className="footer-divider" />
@@ -177,7 +177,6 @@ const Footer = () => {
               <a href="#">DPA</a>
             </div>
           </div>
-
         </div>
       </div>
     </footer>
