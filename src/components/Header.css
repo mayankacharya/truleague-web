@@ -28,7 +28,12 @@
   display: flex;
   align-items: center;
   gap: 0.85rem;
-  z-index: 3;
+  /* z-index: 3; */
+  
+}
+.header__logo-img{
+width: 203px;
+  height: 40.18px;
 }
 
 .header__logo-mark {
@@ -97,12 +102,13 @@
 
 .header__nav-links a {
   font-size: 14px;
-  font-family: 'Lexend Deca', 'Inter', system-ui, sans-serif;
+  font-family: 'Lexend Deca';
   text-transform: uppercase;
-  letter-spacing: 0;
-  color: #000;
+  letter-spacing: 8%;
+  color: #000000;
   text-decoration: none;
-  font-weight: 300;
+  font-weight: 400;
+  line-height: 100%;
 }
 
 .header__nav-links a:hover {
