@@ -49,7 +49,7 @@ background: linear-gradient(360deg, #4E156B 82.03%, #350F49 100%);
   display: grid;
   grid-template-columns: 1fr 350px;
   gap: 2rem;
-  padding-bottom: 2rem;
+  /* padding-bottom: 2rem; */
   box-sizing: border-box;
 }
 
@@ -219,7 +219,7 @@ background: linear-gradient(360deg, #4E156B 82.03%, #350F49 100%);
 }
 
 .footer-logo-img {
-  width: 160px;   /* web ke liye thoda bada */
+  width: 200px;   /* web ke liye thoda bada */
   height: auto;
 }
 .footer-contact-email {
