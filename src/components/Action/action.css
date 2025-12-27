@@ -42,11 +42,11 @@
 
 .action-text {
   margin: 0;
-  font-family: 'Sora', 'Inter', sans-serif;
+  font-family: 'Sora';
   font-weight: 622;
 font-size: 52px;  line-height: 74px;
-  letter-spacing: 0;
-  color: #3c0e6b;
+  letter-spacing: 0%;
+  color: #4E156B;
   text-transform: capitalize;
   display: flex;
   flex-direction: column;
@@ -62,7 +62,7 @@ font-size: 52px;  line-height: 74px;
 
 .action-text-word {
   display: inline-block;
-  color: #9ea1ba;
+  color:  #646464; ;
 }
 
 @keyframes wordColor {
@@ -91,7 +91,7 @@ font-size: 52px;  line-height: 74px;
   gap: 1.2rem;
   cursor: pointer;
   position: relative;
-  box-shadow: 0 20px 40px rgba(29, 8, 58, 0.35);
+  /* box-shadow: 0 20px 40px rgba(29, 8, 58, 0.35); */
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   overflow: visible;
   margin: 33px;
@@ -114,7 +114,7 @@ font-size: 52px;  line-height: 74px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 18px 25px rgba(29, 8, 58, 0.35);
+  /* box-shadow: 0 18px 25px rgba(29, 8, 58, 0.35); */
 }
 
 .action-cta__badge-icon {
