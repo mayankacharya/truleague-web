@@ -8,7 +8,7 @@ const testimonialData = [
     id: 'college',
     label: 'College',
     quote:
-      '“The success has led us to expand use of TruLeague across more programs, and to more intentionally integrate it into our recruitment and marketing efforts.”',
+      '"The success has led us to expand use of TruLeague across more programs, and to more intentionally integrate it into our recruitment and marketing efforts."',
     name: 'Laura Quinlan',
     role: 'Senior Director of Graduate Admissions, Simmons University',
     avatar: AvatarPrimary,
@@ -17,7 +17,7 @@ const testimonialData = [
     id: 'school',
     label: 'School',
     quote:
-      '“The success has led us to expand use of TruLeague across more programs, and to more intentionally integrate it into our recruitment and marketing efforts.”',
+      '"The success has led us to expand use of TruLeague across more programs, and to more intentionally integrate it into our recruitment and marketing efforts."',
     name: 'Laura Quinlan',
     role: 'Senior Director of Graduate Admissions, Simmons University',
     avatar: AvatarSecondary,
@@ -30,14 +30,22 @@ const Testimonials = () => {
   const testimonialsCount = testimonialData.length;
   const activeTestimonial = testimonialData[currentIndex];
 
+  // Check if we can go to previous/next
+  const canGoPrev = currentIndex > 0;
+  const canGoNext = currentIndex < testimonialsCount - 1;
+
   const handlePrev = () => {
-    const prevIndex = (currentIndex - 1 + testimonialsCount) % testimonialsCount;
-    setActiveId(testimonialData[prevIndex].id);
+    if (canGoPrev) {
+      const prevIndex = currentIndex - 1;
+      setActiveId(testimonialData[prevIndex].id);
+    }
   };
 
   const handleNext = () => {
-    const nextIndex = (currentIndex + 1) % testimonialsCount;
-    setActiveId(testimonialData[nextIndex].id);
+    if (canGoNext) {
+      const nextIndex = currentIndex + 1;
+      setActiveId(testimonialData[nextIndex].id);
+    }
   };
 
   return (
@@ -45,7 +53,6 @@ const Testimonials = () => {
       <div className="testimonials-inner">
         <div className="testimonials-heading">
           <div className="testimonials-heading-main">
-            {/* <span className="testimonial-quote-mark testimonial-quote-mark--left">“</span> */}
             <div>
               <h2 className="testimonials-title">Testimonials</h2>
             </div>
@@ -80,21 +87,26 @@ const Testimonials = () => {
               </div>
             </div>
             <div className="testimonial-person__controls">
-              {/* <span className="testimonial-quote-mark testimonial-quote-mark--right">”</span> */}
               <div className="testimonial-nav">
                 <button
                   type="button"
-                  className="testimonial-nav__arrow testimonial-nav__arrow--prev"
+                  className={`testimonial-nav__arrow testimonial-nav__arrow--prev ${
+                    canGoPrev ? 'highlight' : ''
+                  }`}
                   aria-label="Previous testimonial"
                   onClick={handlePrev}
+                  disabled={!canGoPrev}
                 >
                   ‹
                 </button>
                 <button
                   type="button"
-                  className="testimonial-nav__arrow testimonial-nav__arrow--next"
+                  className={`testimonial-nav__arrow testimonial-nav__arrow--next ${
+                    !canGoNext ? 'disabled' : ''
+                  }`}
                   aria-label="Next testimonial"
                   onClick={handleNext}
+                  disabled={!canGoNext}
                 >
                   ›
                 </button>
