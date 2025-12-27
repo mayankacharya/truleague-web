@@ -91,7 +91,7 @@ background: linear-gradient(360deg, #4E156B 82.03%, #350F49 100%);
 /* Desktop nav: single horizontal row */
 .footer-nav-links-left {
   display: flex;
-  gap: 1.3rem;
+  gap: 32px;
   flex-wrap: nowrap;
   white-space: nowrap;
   box-sizing: border-box;

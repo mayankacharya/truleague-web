@@ -5,6 +5,166 @@ import aiPowered from "../assets/OnlySVG/AI-powered.svg";
 import belong from "../assets/OnlySVG/belonging.svg";
 import dummy1 from "../assets/OnlySVG/mwn1.svg";
 import dummy2 from "../assets/OnlySVG/avator2.svg";
+import poweredByAI from "../assets/OnlySVG/Powered by AI.svg";
+
+const SentimentCard = () => {
+  const ref = useRef(null);
+  const [start, setStart] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStart(true);   // 👈 jab dikhe → start
+        } else {
+          setStart(false);  // 👈 jab bahar jaye → reset
+        }
+      },
+      { threshold: 0.6 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const veryPositive = useCountUp(96, start);
+  const positive = useCountUp(64, start);
+  const neutral = useCountUp(8, start);
+  const negative = useCountUp(2, start);
+
+  return (
+    <div ref={ref} className="sentiment-card">
+     <div className="sentiment-header">
+  <span>Conversation Sentiment</span>
+
+  <img
+    src={poweredByAI}
+    alt="Powered by AI"
+    className="ai-powered-logo"
+  />
+</div>
+
+
+      <div className="sentiment-grid">
+        <div className="sentiment-box very">
+          Very Positive
+          <strong>{veryPositive}%</strong>
+        </div>
+        <div className="sentiment-box positive">
+          Positive
+          <strong>{positive}%</strong>
+        </div>
+        <div className="sentiment-box neutral">
+          Neutral
+          <strong>{neutral}%</strong>
+        </div>
+        <div className="sentiment-box negative">
+          Negative
+          <strong>{negative}%</strong>
+        </div>
+      </div>
+
+      <div className="sentiment-footer">
+        {veryPositive}% of your conversations are positive. <br />
+        <span>Follow up on the {negative} negative ones now.</span>
+      </div>
+    </div>
+  );
+};
+
+const FosterOverlays = () => {
+  const ref = useRef(null);
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setShow(entry.isIntersecting),
+      { threshold: 0.6 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // count up values
+  const interested = useCountUp(1200, show);
+  const applied = useCountUp(850, show);
+  const enrolled = useCountUp(430, show);
+
+  // percentages (max = 1200)
+  const interestedPct = (interested / 1200) * 100;
+  const appliedPct = (applied / 1200) * 100;
+  const enrolledPct = (enrolled / 1200) * 100;
+
+  return (
+    <div ref={ref} className={`foster-overlay ${show ? "show" : ""}`}>
+      {/* Chat bubbles */}
+      <div className="foster-chat bubble-1">
+        Glad to talk to you.<br />
+        Let me know if you need help in admissions.
+      </div>
+
+      <div className="foster-chat bubble-2">
+        Thank you for all your answers.<br />
+        Now I have clarity to move forward.
+      </div>
+
+      {/* ✅ Admission Stage – FIGMA STYLE */}
+      <div className="admission-card">
+        <div className="admission-title">Admission Stage</div>
+
+        <div className="admission-row interested">
+  <div
+    className="admission-fill"
+    style={{ width: `${interestedPct}%` }}
+  />
+  <span className="label">Interested</span>
+  <strong>{interested}</strong>
+</div>
+
+<div className="admission-row applied">
+  <div
+    className="admission-fill"
+    style={{ width: `${appliedPct}%` }}
+  />
+  <span className="label">Applied</span>
+  <strong>{applied}</strong>
+</div>
+
+<div className="admission-row enrolled">
+  <div
+    className="admission-fill"
+    style={{ width: `${enrolledPct}%` }}
+  />
+  <span className="label">Enrolled</span>
+  <strong>{enrolled}</strong>
+</div>
+
+
+        {/* <div className="admission-row applied">
+          <div
+            className="admission-fill"
+            style={{ width: `${appliedPct}%` }}
+          >
+            Applied
+          </div>
+          <strong>{applied}</strong>
+        </div> */}
+
+        {/* <div className="admission-row enrolled">
+          <div
+            className="admission-fill"
+            style={{ width: `${enrolledPct}%` }}
+          >
+            Enrolled
+          </div>
+          <strong>{enrolled}</strong>
+        </div> */}
+      </div>
+    </div>
+  );
+};
+
+
 
 
 const useCountUp = (target, start) => {
@@ -193,13 +353,24 @@ export default function GrowEnrollment() {
                 zIndex
               }}
             >
-              <div className="enroll-card__content">
+       <div
+  className={`enroll-card__content ${
+    card.title === "AI-powered insights" ? "content-shift-right" : ""
+  } ${
+    card.title === "Foster belonging & trust" ? "foster-content" : ""
+  }`}
+>
+
+
                 <h3>{card.title}</h3>
-                <ul>
-                  {card.points.map((p, idx) => (
-                    <li key={idx}>{p}</li>
-                  ))}
-                </ul>
+                <ul className="foster-points">
+  {card.points.map((p, idx) => (
+    <li key={idx} style={{ animationDelay: `${idx * 0.2}s` }}>
+      {p}
+    </li>
+  ))}
+</ul>
+
               </div>
 
              <div className="enroll-card__image">
@@ -214,7 +385,13 @@ export default function GrowEnrollment() {
   )}
 
    {/* ✅ ONLY AI-powered insights */}
-  
+  {card.title === "AI-powered insights" && (
+  <SentimentCard />
+)}
+
+{/* ✅ Foster belonging & trust overlays */}
+{card.title === "Foster belonging & trust" && <FosterOverlays />}
+
 </div>
 
             </div>

@@ -8,10 +8,10 @@
 /* ================= HEADER ================= */
 
 .grow-enrollment__header {
-  max-width: 760px;
+  /* max-width: 760px; */
   margin: 0 auto 4rem;
   text-align: center;
-  padding: 0 1rem;
+  padding: 0 23rem;
 }
 
 .grow-enrollment__header h2 {
@@ -107,7 +107,7 @@
 
 .corner-avatar.bottom-right {
   bottom: 120px;
-  right: -45px;
+  right: 30px;
   width: 80px;
     height: 80px;
     border-radius:999px
@@ -121,8 +121,8 @@
   border-radius: 20px;
   object-fit: cover;
   /* box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25); */
-      width: 370px;
-    height: 520px;
+      /* width: 370px;
+    height: 520px; */
 }
 
 /* ================= ALIGNMENT (DESKTOP) ================= */
@@ -209,6 +209,10 @@
   animation: blink 1s steps(1) infinite;
   color: #6b4eff;
   font-weight: 600;
+}
+.sentiment-box.positive {
+  background: #EEF2FF;
+  color: #4F46E5;
 }
 
 /* subtle entry animation */
@@ -301,21 +305,27 @@
 
 .sentiment-card {
   position: absolute;
-  top: 40px;
-  left: -40px;
-  width: 260px;
+  top: 220px;
+  left: 250px;
+  width: 303px;
   background: #fff;
-  padding: 14px;
+  padding: 18px;
   border-radius: 14px;
   box-shadow: 0 24px 60px rgba(0,0,0,0.18);
   z-index: 5;
+  height:188px
 }
 
 .sentiment-header {
-  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
   font-weight: 600;
   color: #4E156B;
   margin-bottom: 10px;
+  font-family: "Lexend Deca";
+  
 }
 
 .sentiment-grid {
@@ -353,9 +363,10 @@
 
 .sentiment-footer {
   position: absolute;
-  bottom: -28px;
-  left: -20px;
-  max-width: 280px;
+  top:320px;          /* 👈 is value se niche/uper adjust karo */
+  left: -300px;
+
+  max-width: 280px; 
   background: #fff;
   padding: 10px 14px;
   border-radius: 14px;
@@ -365,11 +376,181 @@
   z-index: 5;
 }
 
+
 .sentiment-footer span {
   color: #D64545;
   font-weight: 500;
 }
 
+/* 🔥 AI-powered insights ke liye right shift */
+.content-shift-right {
+  padding-left: 120px;   /* 👈 adjust 100–160px if needed */
+}
+
+/* ================= FOSTER BELONGING ANIMATIONS ================= */
+
+/* Left bullets animation */
+.foster-points li {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: fosterFadeUp 0.5s ease forwards;
+}
+
+@keyframes fosterFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Right overlay wrapper */
+.foster-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Chat bubbles */
+.foster-chat {
+  position: absolute;
+  max-width: 260px;
+  background: #fff;
+  padding: 12px 14px;
+  border-radius: 14px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+  font-size: 14px;
+  line-height: 1.4;
+  opacity: 0;
+  transform: translateY(16px);
+  color: #494F73 ;
+  font-family: "lexend deca";
+}
+
+/* Positions (Figma like) */
+.foster-chat.bubble-1 {
+  top: 20px;
+  left: 0px;
+}
+
+.foster-chat.bubble-2 {
+  top: 150px;
+  right: 0px;
+}
+
+/* Admission stage card */
+.admission-card {
+  position: absolute;
+  bottom: 30px;
+  left: -40px;
+  width: 284px;
+  background: #fff;
+  padding: 14px;
+  border-radius: 14px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.admission-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #4E156B;
+}
+
+.admission-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.admission-row.highlight {
+  background: #F1F3FF;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+/* Trigger animations */
+.foster-overlay.show .bubble-1 {
+  animation: fosterFloatIn 0.5s ease 0.2s forwards;
+}
+
+.foster-overlay.show .bubble-2 {
+  animation: fosterFloatIn 0.5s ease 0.45s forwards;
+}
+
+.foster-overlay.show .admission-card {
+  animation: fosterScaleIn 0.5s ease 0.7s forwards;
+}
+
+@keyframes fosterFloatIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fosterScaleIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* ===== Admission Stage – FINAL FIGMA FIX ===== */
+
+.admission-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 36px;
+  padding: 0 12px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: #f2f2f2;
+  overflow: hidden;
+}
+
+/* background fill */
+.admission-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+  border-radius: 10px;
+  transition: width 0.6s ease;
+}
+
+/* text */
+.admission-row .label {
+  position: relative;
+  z-index: 1;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+/* number */
+.admission-row strong {
+  position: relative;
+  z-index: 1;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* colors */
+.admission-row.interested .admission-fill {
+  background: #FAF1EB;
+}
+
+.admission-row.applied .admission-fill {
+  background: #FFF6D8;
+}
+
+.admission-row.enrolled .admission-fill {
+  background: #EAF6EC;
+}
 
 /* ================= 📱 MOBILE FIX ================= */
 
