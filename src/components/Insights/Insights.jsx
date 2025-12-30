@@ -8,13 +8,8 @@ import InsightsSVG3 from '../../assets/OnlySVG/insights3.svg';
 
 const InsightsCarousel = () => {
 
-  // 👇 SCREEN WIDTH CHECK
   const isDesktop = window.innerWidth >= 1024;
-
-  // ❌ Mobile / Tablet me component hi mat dikhao
-  if (!isDesktop) {
-    return null;
-  }
+  if (!isDesktop) return null;
 
   const [scrollProgress, setScrollProgress] = useState(0);
   const containerRef = useRef(null);
@@ -27,7 +22,6 @@ const InsightsCarousel = () => {
   ];
 
   const totalSlides = insightCards.length;
-  const perCardScroll = 1 / totalSlides;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,7 +31,8 @@ const InsightsCarousel = () => {
       const rect = el.getBoundingClientRect();
       const height = el.offsetHeight - window.innerHeight;
 
-      setScrollProgress(Math.min(1, Math.max(0, -rect.top / height)));
+      const progress = Math.min(1, Math.max(0, -rect.top / height));
+      setScrollProgress(progress);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -50,49 +45,74 @@ const InsightsCarousel = () => {
         <div
           className="insights-scroll-container"
           style={{
-            transform: `translateX(-${scrollProgress * ((100 + 5) * (totalSlides - 1))}vw)`
+            transform: `translateX(-${scrollProgress * 100 * (totalSlides - 1)}vw)`
           }}
         >
           {insightCards.map((card, index) => {
-            const local = Math.min(
-              1,
-              Math.max(0, (scrollProgress - index / totalSlides) * totalSlides)
-            );
+            const local =
+              Math.min(1, Math.max(0, (scrollProgress - index / totalSlides) * totalSlides));
 
             return (
-              <div key={card.id} className="insights-item">
-                <div className="insights-item-content">
-
-                  {index === 0 ? (
-                    <div className="insights-text">
-                      <h2 className="insights-heading">
-                        Recruit Smarter With Real-Time AI Insights
-                      </h2>
-                    </div>
-                  ) : (
-                    <div className="insights-text insights-text--placeholder" />
-                  )}
-
-                  <div className="insights-card-container">
-                    <div className="insights-card">
-                      <img
-                        src={card.icon}
-                        alt="card icon"
-                        className="card-icon"
-                        style={{ transform: `translateX(${local * 300}px)` }}
-                      />
-                      <p className="card-text">{card.title}</p>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
+              <InsightSlide
+                key={card.id}
+                index={index}
+                local={local}
+                card={card}
+              />
             );
           })}
         </div>
       </div>
+    </div>
+  );
+};
 
-      <div className="insights-bottom">✨ Thank you for scrolling!</div>
+/* ================= SLIDE ================= */
+
+const InsightSlide = ({ card, index, local }) => {
+  const cardRef = useRef(null);
+  const imgRef = useRef(null);
+
+  let translateX = 0;
+
+  if (cardRef.current && imgRef.current) {
+    const cardWidth = cardRef.current.offsetWidth;
+    const imgWidth = imgRef.current.offsetWidth;
+
+    const maxTranslate = cardWidth - imgWidth - 48; // padding safe
+    const rawMove = local * maxTranslate;
+
+    translateX = Math.min(Math.max(rawMove, 0), maxTranslate);
+  }
+
+  return (
+    <div className="insights-item">
+      <div className="insights-item-content">
+
+        {index === 0 ? (
+          <div className="insights-text">
+            <h2 className="insights-heading">
+              Recruit Smarter With Real-Time AI Insights
+            </h2>
+          </div>
+        ) : (
+          <div className="insights-text insights-text--placeholder" />
+        )}
+
+        <div className="insights-card-container">
+          <div className="insights-card" ref={cardRef}>
+            <img
+              ref={imgRef}
+              src={card.icon}
+              alt=""
+              className="card-icon"
+              style={{ transform: `translateX(${translateX}px)` }}
+            />
+            <p className="card-text">{card.title}</p>
+          </div>
+        </div>
+
+      </div>
     </div>
   );
 };

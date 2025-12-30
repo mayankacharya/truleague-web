@@ -25,44 +25,44 @@ const testimonialData = [
 ];
 
 const Testimonials = () => {
-  const [activeId, setActiveId] = useState(testimonialData[0].id);
-  const currentIndex = testimonialData.findIndex((item) => item.id === activeId);
-  const testimonialsCount = testimonialData.length;
-  const activeTestimonial = testimonialData[currentIndex];
+  const [activeId, setActiveId] = useState('college');
 
-  // Check if we can go to previous/next
-  const canGoPrev = currentIndex > 0;
-  const canGoNext = currentIndex < testimonialsCount - 1;
+  const activeTestimonial = testimonialData.find(
+    (item) => item.id === activeId
+  );
 
+  const isCollegeActive = activeId === 'college';
+  const isSchoolActive = activeId === 'school';
+
+  // 🔁 Arrow click = tab switch
   const handlePrev = () => {
-    if (canGoPrev) {
-      const prevIndex = currentIndex - 1;
-      setActiveId(testimonialData[prevIndex].id);
-    }
+    // LEFT arrow → College par le jaata hai
+    setActiveId('college');
   };
 
   const handleNext = () => {
-    if (canGoNext) {
-      const nextIndex = currentIndex + 1;
-      setActiveId(testimonialData[nextIndex].id);
-    }
+    // RIGHT arrow → School par le jaata hai
+    setActiveId('school');
   };
 
   return (
     <section className="testimonials-section">
       <div className="testimonials-inner">
+        {/* ===== HEADING ===== */}
         <div className="testimonials-heading">
           <div className="testimonials-heading-main">
-            <div>
-              <h2 className="testimonials-title">Testimonials</h2>
-            </div>
+            <h2 className="testimonials-title">Testimonials</h2>
           </div>
+
+          {/* ===== TABS ===== */}
           <div className="testimonials-tabs">
             {testimonialData.map((item) => (
               <button
                 key={item.id}
                 type="button"
-                className={`testimonials-tab ${item.id === activeId ? 'is-active' : ''}`}
+                className={`testimonials-tab ${
+                  item.id === activeId ? 'is-active' : ''
+                }`}
                 onClick={() => setActiveId(item.id)}
               >
                 {item.label}
@@ -71,7 +71,8 @@ const Testimonials = () => {
           </div>
         </div>
 
-        <div className="testimonials-card">
+        {/* ===== CARD ===== */}
+        <div className="testimonials-card" key={activeId}>
           <p className="testimonial-quote">{activeTestimonial.quote}</p>
 
           <div className="testimonial-person">
@@ -82,31 +83,38 @@ const Testimonials = () => {
                 alt={activeTestimonial.name}
               />
               <div>
-                <p className="testimonial-name">{activeTestimonial.name}</p>
-                <p className="testimonial-role">{activeTestimonial.role}</p>
+                <p className="testimonial-name">
+                  {activeTestimonial.name}
+                </p>
+                <p className="testimonial-role">
+                  {activeTestimonial.role}
+                </p>
               </div>
             </div>
+
+            {/* ===== ARROWS ===== */}
             <div className="testimonial-person__controls">
               <div className="testimonial-nav">
+                {/* LEFT ARROW */}
                 <button
                   type="button"
                   className={`testimonial-nav__arrow testimonial-nav__arrow--prev ${
-                    canGoPrev ? 'highlight' : ''
+                    isCollegeActive ? 'highlight' : ''
                   }`}
-                  aria-label="Previous testimonial"
                   onClick={handlePrev}
-                  disabled={!canGoPrev}
+                  aria-label="Go to College testimonial"
                 >
                   ‹
                 </button>
+
+                {/* RIGHT ARROW */}
                 <button
                   type="button"
                   className={`testimonial-nav__arrow testimonial-nav__arrow--next ${
-                    !canGoNext ? 'disabled' : ''
+                    isSchoolActive ? '' : 'disabled'
                   }`}
-                  aria-label="Next testimonial"
                   onClick={handleNext}
-                  disabled={!canGoNext}
+                  aria-label="Go to School testimonial"
                 >
                   ›
                 </button>

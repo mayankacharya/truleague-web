@@ -74,7 +74,7 @@
 }
 
 .dashboard-stage::after {
-  bottom: -160px;
+  /* bottom: -160px;
   transform: translateX(-50%) translateY(40px) rotateX(75deg);
   width: min(860px, 88%);
   height: 150px;
@@ -83,7 +83,7 @@
   box-shadow:
     inset 0 6px 25px rgba(255, 255, 255, 0.8),
     0 45px 90px rgba(18, 10, 60, 0.35);
-  z-index: -1;
+  z-index: -1; */
 }
 
 /* dashboard-frame: remove auto-play animation; we will toggle .pop class to play */
