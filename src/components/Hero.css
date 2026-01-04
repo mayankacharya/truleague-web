@@ -1,9 +1,13 @@
 /* ---------- SECTION / BACKGROUND ---------- */
+:root {
+  --hero-bg: #4B0968;
+}
+
 .hero-section {
   position: relative;
   min-height: 90vh;
   padding: 3.5rem 1.5rem 2.5rem;
-  background: #4B0968;
+ background: var(--hero-bg);
   color: #fff;
   overflow: hidden;
   width: 100%;
@@ -22,7 +26,7 @@
   height: clamp(380px, 50vh, 680px);
   max-width: 1200px;
   margin-inline: auto;
-  background: inherit !important;
+  background: var(--hero-bg);
   overflow: hidden;
   border: none !important;
   box-shadow: none !important;
@@ -42,7 +46,7 @@
   height: 100%;
   object-fit: contain !important;
   object-position: 50% 100% !important;
-  background: inherit;
+   background-color: var(--hero-bg); 
   display: block;
   border: none;
   outline: none;
