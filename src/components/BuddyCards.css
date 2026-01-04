@@ -371,21 +371,60 @@
 
 /* responsive thoda sa */
 @media (max-width: 768px) {
+
   .buddy-fancy-section {
-    padding: 60px 0;
+    padding: 48px 0 32px;
   }
+
   .buddy-fancy-heading {
-    font-size: 24px;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 12px;
   }
+
+  /* ROW */
   .buddy-fancy-row {
-    height: 340px;
+    height: 160px;              /* ⬅️ compact */
+    align-items: center;
   }
+
+  /* CARD SIZE — MOST IMPORTANT */
   .buddy-fancy-card {
-    --card-width: 220px;
+    --card-width: 140px;        /* ⬅️ chhota card */
   }
+
+  .buddy-fancy-card__logo svg {
+    max-width: 120px;
+    height: auto;
+  }
+
+  /* CONTINUOUS SCROLL */
   .buddy-fancy-row--scroll {
-    animation: buddy-marquee 12s linear infinite;
-    column-gap: 20px;
-    padding: 0 24px;
+    animation: buddy-marquee 10s linear infinite;  /* ⬅️ faster */
+    column-gap: 14px;           /* ⬅️ logos paas-paas */
+    padding: 0 16px;
   }
+
+  /* REMOVE FAN PHASE VISUAL HEAVINESS */
+  .buddy-fancy-row--fan1,
+  .buddy-fancy-row--fan2,
+  .buddy-fancy-row--fan2-lineup {
+    animation: none;
+  }
+
+  .buddy-fancy-row--fan1 .buddy-fancy-card,
+  .buddy-fancy-row--fan2 .buddy-fancy-card,
+  .buddy-fancy-row--fan2-lineup .buddy-fancy-card {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .buddy-fancy-viewport {
+  width: 100vw;              /* poori screen ki width */
+  overflow: hidden;          /* cards bahar jayenge par dikhenge nahi */
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%); /* section ke center se full-bleed align */
+  border-radius: 0;
+  margin-top: -16px;
+}
 }

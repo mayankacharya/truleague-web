@@ -166,20 +166,31 @@
 @keyframes popOut {
   0% {
     opacity: 0;
-    transform: perspective(1800px) translateY(220px) translateZ(-160px) rotateX(55deg) scale(0.68);
+    transform: translateY(140px) scale(0.88);
   }
-  45% {
-    opacity: 1;
-    transform: perspective(1800px) translateY(120px) translateZ(-90px) rotateX(32deg) scale(0.82);
+
+  60% {
+    opacity: 0.9;
+    transform: translateY(22px) scale(0.985);
   }
-  90% {
-    transform: perspective(1800px) translateY(35px) translateZ(-10px) rotateX(8deg) scale(0.98);
+
+  85% {
+    transform: translateY(-4px) scale(1.005);
   }
+
   100% {
     opacity: 1;
-    transform: perspective(1800px) translateY(0) translateZ(0) rotateX(0deg) scale(1);
+    transform: translateY(0) scale(1);
   }
 }
+
+
+.dashboard-frame.pop {
+  animation: popOut 1.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+
+
 
 @keyframes floatLoop {
   0%,
@@ -201,7 +212,7 @@
   }
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .dashboard-stage {
     min-height: 420px;
   }
@@ -210,13 +221,13 @@
     font-size: 16px;
     margin-bottom: 40px;
   }
-}
+} */
 
 @media (max-width: 640px) {
   .dashboard-stage::before {
-  bottom: 10px !important;
+  bottom: 107px !important;
   transform: translateX(-50%) rotateX(70deg) translateY(0px);
-  width: min(1000px, 94%);
+  width: min(1000px, 105%);
   height: 230px;
   border-radius: 70px;
   background: radial-gradient(50% 19.98% at 50% 50%, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%);
@@ -254,10 +265,7 @@
     padding-bottom: 10px;
   }
 
-  .dashboard-stage::before,
-  .dashboard-stage::after {
-    width: 100%;
-  }
+ 
 
   .dashboard-frame {
     width: 100%;
@@ -265,8 +273,8 @@
   }
 
   .dashboard-frame::before {
-    width: 100%;
-    transform: translateX(-50%) perspective(1200px) rotateX(60deg) translateY(-10px);
+    width: 0% !important;
+    /* transform: translateX(-50%) perspective(1200px) rotateX(60deg) translateY(-10px); */
     border-radius: 60px;
   }
 
@@ -277,6 +285,8 @@
   }
 
   .dashboard-image {
-    transform: translateY(-40px);
+    transform: translateY(-32px);
+      animation: floatLoop 6s ease-in-out infinite;
+
   }
 }

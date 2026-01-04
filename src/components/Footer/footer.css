@@ -474,7 +474,7 @@ background: linear-gradient(360deg, #4E156B 82.03%, #350F49 100%);
 .footer-mobile-top {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
-  gap: 1.8rem;
+  gap: 4.8rem;
 }
 
 /* LEFT */

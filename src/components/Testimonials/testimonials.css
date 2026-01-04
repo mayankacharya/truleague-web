@@ -270,10 +270,30 @@
 }
 
 @media (max-width: 768px) {
+
   .testimonials-heading {
-    align-items: flex-start;
+      flex-direction: column;
+    align-items: center;   /* 🔥 center container */
+    text-align: center;
+  }
+   .testimonials-tabs {
+    order: 1;
+    justify-content: center;
   }
 
+  /* Testimonials title ko niche bhejne ke liye */
+  .testimonials-heading-main {
+    order: 2;
+    margin-top: 0.75rem;
+    justify-content: center;
+  }
+.testimonials-title {
+    padding: 0;            /* mobile me left padding hata do */
+    text-align: center;
+  }
+  .testimonials-heading-main::before {
+    display: none;
+  }
   .testimonial-person {
     flex-direction: column;
     align-items: flex-start;
@@ -287,4 +307,22 @@
   .testimonials-card::after {
     display: none;
   }
+  .testimonial-quote {
+  color: rgba(0, 0, 0, 1);
+  line-height: 1.8;
+  /* margin: 0 0 2.5rem; */
+  max-width: 720px;
+  font-size: 20px;
+  font-weight: 400;
+  font-family: "sora";
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.22px;
+}
+.testimonials-card {
+  position: relative;
+  padding: clamp(0.25rem, 2vw, 0.25rem);
+  /* overflow: hidden; */
+  isolation: isolate;
+}
 }

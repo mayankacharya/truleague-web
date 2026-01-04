@@ -11,7 +11,7 @@
   /* max-width: 760px; */
   margin: 0 auto 12rem;
   text-align: center;
-  padding: 0 12rem;
+  padding: 12px 12rem;
 }
 
 .grow-enrollment__header h2 {
@@ -555,12 +555,26 @@
 /* ================= 📱 MOBILE FIX ================= */
 
 @media (max-width: 600px) {
+  .grow-enrollment__header {
+  /* max-width: 760px; */
+  margin: 0 auto 0rem;
+  text-align: center;
+  padding: 0 12rem;
+}
+  .grow-enrollment__header {
+  /* max-width: 760px; */
+  /* margin: 0 auto 12rem; */
+  text-align: center;
+  padding: 0 0rem;
+}
   .grow-enrollment__header h2 {
     font-size: 32px;
+    margin: 8px;
   }
 
   .grow-enrollment__header p {
     font-size: 18px;
+    margin: 33px;
   }
 
   .sticky-stage {
@@ -594,7 +608,96 @@
   border-radius: 20px;
   object-fit: cover;
   /* box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25); */
-      width: 252px;
+    width: 252px;
     height: 305px;
+}
+
+
+/* Positions (Figma like) */
+.foster-chat.bubble-1 {
+  top: 5px;
+  left: 30px;
+  font-size: 10px;
+}
+
+ .foster-chat.bubble-2 {
+  top: 266px;
+  right: 161px;
+  font-size: 10px;
+
+}
+
+/* Admission stage card */
+.admission-card {
+  position: absolute;
+  bottom: 65px;
+  left: 128px;
+  width: 192px;
+  background: #fff;
+  padding: 14px;
+  border-radius: 14px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.admission-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #4E156B;
+}
+
+.admission-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.admission-row.highlight {
+  background: #F1F3FF;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+/* Trigger animations */
+.foster-overlay.show .bubble-1 {
+  animation: fosterFloatIn 0.5s ease 0.2s forwards;
+}
+
+.foster-overlay.show .bubble-2 {
+  animation: fosterFloatIn 0.5s ease 0.45s forwards;
+}
+
+.foster-overlay.show .admission-card {
+  animation: fosterScaleIn 0.5s ease 0.7s forwards;
+}
+
+@keyframes fosterFloatIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fosterScaleIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* ===== Admission Stage – FINAL FIGMA FIX ===== */
+.sentiment-card {
+  position: absolute;
+  top: 2px;
+  left: 20px;
+  width: 303px;
+  background: #fff;
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+  z-index: 5;
+  height:188px
 }
 }

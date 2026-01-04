@@ -233,9 +233,10 @@ font-size: 44px;  margin-top: 0.15rem;
 
 @media (max-width: 600px) {
   .hero-section__title-line--strong {
-    font-size: clamp(2.3rem, 4vw, 3.25rem);
-    margin-top: 0.15rem;
-    letter-spacing: 0.02em;
+    /* font-size: clamp(2.3rem, 4vw, 3.25rem); */
+    margin-top: 0rem;
+    letter-spacing: 0em;
+    font-size: 35px;
   }
 
   .hero-section__title-line:first-child {
@@ -289,10 +290,11 @@ font-size: 44px;  margin-top: 0.15rem;
   }
 
   .hero-section__title {
-    font-size: clamp(2.2rem, 7vw, 3rem);
+    /* font-size: clamp(2.2rem, 7vw, 3rem); */
     letter-spacing: 0;
     text-align: left;
     align-items: flex-start;
+    font-size: 35px;
   }
 
   .hero-section__title-line,
@@ -301,13 +303,17 @@ font-size: 44px;  margin-top: 0.15rem;
   }
 
   .hero-section__subtext {
-    font-size: 0.9rem;
+    font-size: 16px;
     text-align: left;
+    text-align: center;
+    margin: 17px;
   }
 
   .hero-section__cta {
     align-self: center;
     width: 100%;
-    font-size: 24px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: "Lexend Deca";
   }
 }
