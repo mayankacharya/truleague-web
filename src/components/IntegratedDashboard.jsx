@@ -1,37 +1,35 @@
-import React, { useEffect, useRef } from 'react'
-import dashboardPreview from '../assets/dashboard.png'
-import './IntegratedDashboard.css'
+import React, { useEffect, useRef } from "react";
+import dashboardPreview from "../assets/dashboard.png";
+import "./IntegratedDashboard.css";
 
 const IntegratedDashboard = () => {
-  const sectionRef = useRef(null)
-  const frameRef = useRef(null)
+  const sectionRef = useRef(null);
+  const frameRef = useRef(null);
 
   useEffect(() => {
-    const el = sectionRef.current
-    const frameEl = frameRef.current
-    if (!el || !frameEl) return
+  const section = sectionRef.current;
+  const frame = frameRef.current;
+  const image = frame?.querySelector(".dashboard-image");
 
-    const handleIntersect = ([entry]) => {
+  if (!section || !frame || !image) return;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
       if (entry.isIntersecting) {
-        // replay animation by removing and re-adding class
-        frameEl.classList.remove('pop')
-        // force reflow to allow animation restart
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        void frameEl.offsetWidth
-        frameEl.classList.add('pop')
+        frame.classList.remove("pop");
+        void frame.offsetWidth;
+        frame.classList.add("pop");
+
+        image.classList.add("reveal"); // 🔥 MAIN LINE
       }
-    }
+    },
+    { threshold: 0.45 }
+  );
 
-    const observer = new IntersectionObserver(handleIntersect, {
-      threshold: 0.45, // adjust when you want it to trigger
-    })
+  observer.observe(section);
+  return () => observer.disconnect();
+}, []);
 
-    observer.observe(el)
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [])
 
   return (
     <section className="dashboard-hero" ref={sectionRef}>
@@ -41,11 +39,18 @@ const IntegratedDashboard = () => {
 
         <div className="dashboard-stage">
           <div className="dashboard-frame" ref={frameRef}>
+            
+            {/* DASHBOARD IMAGE */}
             <img
               src={dashboardPreview}
               alt="Integrated dashboard preview"
               className="dashboard-image"
             />
+
+            {/* 👇 BOTTOM WHITE SCREEN (BOX INTERIOR) */}
+            <div className="dashboard-bottom-screen"></div>
+
+            {/* OPTIONAL SOFT SHADOW SVG */}
             <svg
               className="dashboard-shadow"
               viewBox="0 0 816 200"
@@ -53,18 +58,25 @@ const IntegratedDashboard = () => {
             >
               <defs>
                 <radialGradient id="shadowGrad" cx="50%" cy="0%" r="80%">
-                  <stop offset="0%" stopColor="#5DADE2" stopOpacity="0.6" />
-                  <stop offset="50%" stopColor="#3498DB" stopOpacity="0.3" />
-                  <stop offset="100%" stopColor="#2980B9" stopOpacity="0" />
+                  <stop offset="0%" stopColor="#000" stopOpacity="0.25" />
+                  <stop offset="70%" stopColor="#000" stopOpacity="0.1" />
+                  <stop offset="100%" stopColor="#000" stopOpacity="0" />
                 </radialGradient>
               </defs>
-              <ellipse cx="408" cy="40" rx="500" ry="80" fill="url(#shadowGrad)" />
+              <ellipse
+                cx="408"
+                cy="40"
+                rx="500"
+                ry="80"
+                fill="url(#shadowGrad)"
+              />
             </svg>
+
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default IntegratedDashboard
+export default IntegratedDashboard;
