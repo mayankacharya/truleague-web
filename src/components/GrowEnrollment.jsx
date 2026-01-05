@@ -348,7 +348,7 @@ export default function GrowEnrollment() {
               style={{
                 background: gradients[i % gradients.length],
                 transform: `translateY(${translateY}px) scale(${scale})`,
-                filter: `blur(${blur}px)`,
+                
                 opacity,
                 zIndex
               }}

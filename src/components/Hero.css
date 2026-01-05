@@ -170,10 +170,10 @@ font-size: 44px;  margin-top: 0.15rem;
 
 .hero-section__subtext {
   margin: 0;
-  line-height: 1.6;
+  line-height: 1;
   color: rgba(255, 255, 255, 0.85);
   font-size: 18px;
-  font-family: "lexend-deca", sans-serif;
+  font-family: "lexend-deca";
   font-weight: 300;
 }
 
@@ -307,6 +307,7 @@ font-size: 44px;  margin-top: 0.15rem;
     text-align: left;
     text-align: center;
     margin: 17px;
+    font-family: "Lexend Deca";
   }
 
   .hero-section__cta {

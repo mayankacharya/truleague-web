@@ -75,7 +75,7 @@
   color: var(--Purple-Web, rgba(78, 21, 107, 1));
   line-height: 1.2;
   margin-bottom: 1.5rem;
-  font-family: "sora", sans-serif;
+  font-family: "sora";
 }
 
 /* RIGHT PANEL for card */

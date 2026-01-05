@@ -2,16 +2,16 @@
 
 .grow-enrollment {
   width: 100%;
-  background: #f6f5fb;
+  /* background: #f6f5fb; */
 }
 
 /* ================= HEADER ================= */
 
 .grow-enrollment__header {
   /* max-width: 760px; */
-  margin: 0 auto 12rem;
+  margin: 0 auto 8rem;
   text-align: center;
-  padding: 12px 12rem;
+  padding: 0px 10rem;
 }
 
 .grow-enrollment__header h2 {
@@ -46,7 +46,7 @@
   min-height: 580px;
   padding: 64px;
   border-radius: 28px;
-  box-shadow: 0 50px 120px rgba(0, 0, 0, 0.14);
+  /* box-shadow: 0 50px 120px rgba(0, 0, 0, 0.14); */
 
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -382,9 +382,8 @@
   font-weight: 500;
 }
 
-/* 🔥 AI-powered insights ke liye right shift */
 .content-shift-right {
-  padding-left: 120px;   /* 👈 adjust 100–160px if needed */
+  padding-left: 120px;   
 }
 
 /* ================= FOSTER BELONGING ANIMATIONS ================= */
