@@ -7,29 +7,25 @@ const IntegratedDashboard = () => {
   const frameRef = useRef(null);
 
   useEffect(() => {
-  const section = sectionRef.current;
-  const frame = frameRef.current;
-  const image = frame?.querySelector(".dashboard-image");
+    const section = sectionRef.current;
+    const frame = frameRef.current;
+    if (!section || !frame) return;
 
-  if (!section || !frame || !image) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          frame.classList.remove("pop");
+          void frame.offsetWidth; // force reflow
+          frame.classList.add("pop");
+          
+        }
+      },
+      { threshold: 0.45 }
+    );
 
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      if (entry.isIntersecting) {
-        frame.classList.remove("pop");
-        void frame.offsetWidth;
-        frame.classList.add("pop");
-
-        image.classList.add("reveal"); // 🔥 MAIN LINE
-      }
-    },
-    { threshold: 0.45 }
-  );
-
-  observer.observe(section);
-  return () => observer.disconnect();
-}, []);
-
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section className="dashboard-hero" ref={sectionRef}>
