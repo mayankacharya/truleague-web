@@ -22,6 +22,28 @@ linear-gradient(180deg, rgba(50, 11, 70, 0.5) 0%, rgba(78, 21, 107, 0) 30.7%, rg
   margin: 84px;
 }
 
+.lead-impact__content::before {
+  content: "";
+  position: absolute;
+
+  top: -211px;              /* 🔥 margin ke exact upar */
+  left: 50%;
+  transform:translateX(-51%) rotateX(-79deg) translateY(-22px);
+
+  width: min(1000px, 94%);
+  height: 131px;
+
+  background: radial-gradient(
+    50% 20% at 50% 50%,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+
 
 .lead-impact__title {
 font-size: 32px;
