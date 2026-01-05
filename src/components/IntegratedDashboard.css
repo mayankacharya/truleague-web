@@ -1,8 +1,8 @@
 .dashboard-hero {
   width: 100%;
   min-height: 100vh;
-  padding: 40px 20px;
-  background: linear-gradient(180deg, #fdfbff 0%, #f7f2ff 60%, #ede9ff 100%);
+  padding: 0px 0px;
+  /* background: li near-gradient(180deg, #fdfbff 0%, #f7f2ff 60%, #ede9ff 100%); */
   display: flex;
   align-items: center;
   justify-content: center;

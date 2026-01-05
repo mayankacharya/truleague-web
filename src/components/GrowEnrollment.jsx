@@ -378,11 +378,26 @@ export default function GrowEnrollment() {
 
   {/* corner avatars – sirf first card ke liye */}
   {card.title === "Inquiry to enrollment" && (
-    <>
-      <img className="corner-avatar top-left" src={dummy1} alt="" />
-      <img className="corner-avatar bottom-right" src={dummy2} alt="" />
-    </>
-  )}
+  <>
+    {/* top avatar */}
+    <img className="corner-avatar top-left" src={dummy1} alt="" />
+
+    {/* right avatar */}
+    <img className="corner-avatar bottom-right" src={dummy2} alt="" />
+
+    {/* 🔥 bottom chat bubble (FIGMA MATCH) */}
+   <div className={`inquiry-chat-bubble inquiry-reveal`}>
+  <img src={dummy1} alt="" className="chat-avatar" />
+  <p>
+    Keen to know about sport clubs <br />
+    and activities in the college.<br />
+    I am a state level basketball player.
+  </p>
+</div>
+
+  </>
+)}
+
 
    {/* ✅ ONLY AI-powered insights */}
   {card.title === "AI-powered insights" && (
