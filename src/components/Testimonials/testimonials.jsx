@@ -3,46 +3,79 @@ import './testimonials.css';
 import AvatarPrimary from '../../assets/OnlySVG/laura.svg';
 import AvatarSecondary from '../../assets/OnlySVG/laura.svg';
 
-const testimonialData = [
-  {
-    id: 'college',
-    label: 'College',
-    quote:
-      '"The success has led us to expand use of TruLeague across more programs, and to more intentionally integrate it into our recruitment and marketing efforts."',
-    name: 'Laura Quinlan',
-    role: 'Senior Director of Graduate Admissions, Simmons University',
-    avatar: AvatarPrimary,
-  },
-  {
-    id: 'school',
-    label: 'School',
-    quote:
-      '"The success has led us to expand use of TruLeague across more programs, and to more intentionally integrate it into our recruitment and marketing efforts."',
-    name: 'Laura Quinlan',
-    role: 'Senior Director of Graduate Admissions, Simmons University',
-    avatar: AvatarSecondary,
-  },
-];
+// 🔥 COMPLETE DATA STRUCTURE: Multiple testimonials per tab
+const testimonialData = {
+  college: [
+    {
+      id: 1,
+      quote:
+        '"The success has led us to expand use of TruLeague across more programs, and to more intentionally integrate it into our recruitment and marketing efforts."',
+      name: 'Laura Quinlan',
+      role: 'Senior Director of Graduate Admissions',
+      organization: 'Simmons University',
+      avatar: AvatarPrimary,
+    },
+    {
+      id: 2,
+      quote:
+        '"TruLeague has become an essential tool in our enrollment strategy."',
+      name: 'Dr. Daniel Richer',
+      role: 'Executive Director of Enrollment Strategy',
+      organization: 'Worcester Polytechnic Institute',
+      avatar: AvatarPrimary,
+    },
+  ],
+  student: [
+    {
+      id: 1,
+      quote:
+        '"TruLeague helped me connect with current students and get real answers about campus life before making my decision."',
+      name: 'Emily Chen',
+      role: 'Freshman',
+      organization: 'Computer Science',
+      avatar: AvatarSecondary,
+    },
+    {
+      id: 2,
+      quote:
+        '"The community on TruLeague made me feel welcomed even before I arrived on campus. It was invaluable in my decision process."',
+      name: 'Michael Rodriguez',
+      role: 'Sophomore',
+      organization: 'Business Administration',
+      avatar: AvatarSecondary,
+    },
+  ],
+};
 
 const Testimonials = () => {
-  const [activeId, setActiveId] = useState('college');
+  const [activeTab, setActiveTab] = useState('college'); // college or student
+  const [currentIndex, setCurrentIndex] = useState(0); // index within current tab
 
-  const activeTestimonial = testimonialData.find(
-    (item) => item.id === activeId
-  );
+  // Get current tab's testimonials
+  const currentTestimonials = testimonialData[activeTab];
+  const activeTestimonial = currentTestimonials[currentIndex];
+  
+  // Check if we're at first/last position
+  const isFirst = currentIndex === 0;
+  const isLast = currentIndex === currentTestimonials.length - 1;
 
-  const isCollegeActive = activeId === 'college';
-  const isSchoolActive = activeId === 'school';
+  // 🔥 TAB SWITCH - Reset index when switching tabs
+  const handleTabSwitch = (tabName) => {
+    setActiveTab(tabName);
+    setCurrentIndex(0); // Reset to first testimonial of new tab
+  };
 
-  // 🔁 Arrow click = tab switch
+  // 🔥 ARROW NAVIGATION - Within current tab
   const handlePrev = () => {
-    // LEFT arrow → College par le jaata hai
-    setActiveId('college');
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
   };
 
   const handleNext = () => {
-    // RIGHT arrow → School par le jaata hai
-    setActiveId('school');
+    if (currentIndex < currentTestimonials.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
   };
 
   return (
@@ -56,23 +89,29 @@ const Testimonials = () => {
 
           {/* ===== TABS ===== */}
           <div className="testimonials-tabs">
-            {testimonialData.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                className={`testimonials-tab ${
-                  item.id === activeId ? 'is-active' : ''
-                }`}
-                onClick={() => setActiveId(item.id)}
-              >
-                {item.label}
-              </button>
-            ))}
+            <button
+              type="button"
+              className={`testimonials-tab ${
+                activeTab === 'college' ? 'is-active' : ''
+              }`}
+              onClick={() => handleTabSwitch('college')}
+            >
+              College
+            </button>
+            <button
+              type="button"
+              className={`testimonials-tab ${
+                activeTab === 'student' ? 'is-active' : ''
+              }`}
+              onClick={() => handleTabSwitch('student')}
+            >
+              Student
+            </button>
           </div>
         </div>
 
         {/* ===== CARD ===== */}
-        <div className="testimonials-card" key={activeId}>
+        <div className="testimonials-card" key={`${activeTab}-${currentIndex}`}>
           <p className="testimonial-quote">{activeTestimonial.quote}</p>
 
           <div className="testimonial-person">
@@ -89,34 +128,39 @@ const Testimonials = () => {
                 <p className="testimonial-role">
                   {activeTestimonial.role}
                 </p>
+                <p className="testimonial-organization">
+                  {activeTestimonial.organization}
+                </p>
               </div>
             </div>
 
-            {/* ===== ARROWS ===== */}
+            {/* ===== ARROWS - Navigate within current tab ===== */}
             <div className="testimonial-person__controls">
               <div className="testimonial-nav">
-                {/* LEFT ARROW */}
+                {/* LEFT ARROW - Previous testimonial in current tab */}
                 <button
                   type="button"
                   className={`testimonial-nav__arrow testimonial-nav__arrow--prev ${
-                    isCollegeActive ? 'highlight' : ''
+                    !isFirst ? 'highlight' : ''
                   }`}
                   onClick={handlePrev}
-                  aria-label="Go to College testimonial"
+                  disabled={isFirst}
+                  aria-label="Previous testimonial"
                 >
-                  ‹
+                  ←
                 </button>
-
-                {/* RIGHT ARROW */}
+ 
+                {/* RIGHT ARROW - Next testimonial in current tab */}
                 <button
                   type="button"
                   className={`testimonial-nav__arrow testimonial-nav__arrow--next ${
-                    isSchoolActive ? '' : 'disabled'
+                    isLast ? 'disabled' : ''
                   }`}
                   onClick={handleNext}
-                  aria-label="Go to School testimonial"
+                  disabled={isLast}
+                  aria-label="Next testimonial"
                 >
-                  ›
+                  →
                 </button>
               </div>
             </div>
@@ -124,7 +168,7 @@ const Testimonials = () => {
         </div>
       </div>
     </section>
-  );
+  ); 
 };
 
 export default Testimonials;

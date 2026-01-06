@@ -32,13 +32,13 @@
   display: flex;
   align-items: stretch;
   justify-content: flex-start;
-  gap: 0px; /* 👈 SAME GAP BETWEEN ALL CARDS */
+  gap: 0px;
   transition: transform 0.5s ease-out;
 }
 
 /* Each slide takes full screen width */
 .insights-item {
-  flex: 0 0 100vw; /* 👈 SLIDE WIDTH FIXED */
+  flex: 0 0 100vw;
   height: 100%;
   display: flex;
   align-items: center;
@@ -56,7 +56,7 @@
 
 /* LEFT PANEL – text only on first slide */
 .insights-text {
-  width: 45%; /* 👈 FIXED WIDTH */
+  width: 45%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -66,7 +66,7 @@
 /* For other slides LEFT AREA exists but invisible → maintains equal spacing */
 .insights-text--placeholder {
   width: 45%;
-  visibility: hidden; /* 👈 same space occupy, hidden */
+  visibility: hidden;
 }
 
 .insights-heading {
@@ -80,20 +80,19 @@
 
 /* RIGHT PANEL for card */
 .insights-card-container {
-  width: 46%; /* 👈 SAME FOR ALL SLIDES */
+  width: 46%;
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* 👈 STARTS AT SAME X POSITION */
+  justify-content: flex-start;
   min-width: 320px;
 }
-/* Second, third, fourth slide ko thoda LEFT overlap karao */
-@media (min-width: 1024px) {
+
+/* 🔥 FIXED SPACING FOR ALL WEB SCREEN SIZES */
+@media (min-width: 768px) {
   .insights-item + .insights-item {
-    margin-left: -580px; /* 👈 applies only on web/desktop */
+    margin-left: -580px; /* 👈 FIXED SPACING - same for all desktop/tablet sizes */
   }
 }
-
-
 
 /* CARD UI */
 .insights-card {
@@ -114,9 +113,8 @@
   width: 261px;
   height: 261px;
   object-fit: contain;
-  transition: transform 0.3s ease-out;  /* 👈 yeh naya add karo */
+  transition: transform 0.3s ease-out;
 }
-
 
 .card-text {
   font-size: 36px;
@@ -145,12 +143,6 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
-  .insights-item + .insights-item {
-    margin-left: -280px;
-  }
-}
-
 @media (max-width: 768px) {
   .insights-item-content {
     flex-direction: column;
@@ -172,6 +164,7 @@
   }
 }
 
+/* ================= MOBILE VIEW ================= */
 
 .mobile-insights-section {
   padding: 40px 16px 64px;
@@ -221,7 +214,7 @@
   color: #4E156B;
   font-family: "sora", sans-serif;
   text-align: center;
-  margin-bottom: 24px;   /* heading aur first card ke beech gap */
+  margin-bottom: 24px;
   line-height: 1.50;
   margin: 25px;
 }

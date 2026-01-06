@@ -271,12 +271,12 @@ export default function GrowEnrollment() {
           let zIndex = 1;
 
           // Mobile-specific animation adjustments
-          const EXIT_Y = isMobile ? vh * 0.5 : vh * 0.45;
-          const ENTER_OFFSET = isMobile ? 80 : 120;
+          const EXIT_Y = isMobile ? vh * 0.5 : vh * 0.55; // 🔥 WEB: 0.45 → 0.55
+          const ENTER_OFFSET = isMobile ? 80 : 140; // 🔥 WEB: 120 → 140
 
           if (i < activeIndex) {
             translateY = -EXIT_Y;
-            scale = isMobile ? 0.92 : 0.9;
+            scale = isMobile ? 0.92 : 0.88; // 🔥 WEB: 0.9 → 0.88
             blur = isMobile ? 4 : 6;
             opacity = 0;
             zIndex = 0;
@@ -284,9 +284,9 @@ export default function GrowEnrollment() {
 
           if (i === activeIndex) {
             translateY = -progress * EXIT_Y;
-            scale = 1 - progress * (isMobile ? 0.06 : 0.08);
+            scale = 1 - progress * (isMobile ? 0.06 : 0.1); // 🔥 WEB: 0.08 → 0.1
             blur = progress * (isMobile ? 3 : 4);
-            opacity = 1 - progress * 0.25;
+            opacity = 1 - progress * (isMobile ? 0.25 : 0.2); // 🔥 WEB: 0.25 → 0.2
             zIndex = 2;
           }
 
