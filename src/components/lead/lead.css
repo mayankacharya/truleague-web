@@ -33,11 +33,7 @@ background: radial-gradient(58.7% 83.24% at 50% 87.66%, #7A2BA3 0%, #4E156B 100%
   width: min(1000px, 94%);
   height: 131px;
 
-  background: radial-gradient(
-    50% 20% at 50% 50%,
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  background: radial-gradient(50% 19.98% at 50% 50%, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%);
 
   pointer-events: none;
   z-index: 0;
