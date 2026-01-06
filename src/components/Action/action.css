@@ -1,9 +1,6 @@
 .action-section {
-  background: radial-gradient(
-    15.54% 25.35% at 30.72% 35.05%,
-    #ffffff 0%,
-    #e2e6fa 100%
-  );
+ background: radial-gradient(15.54% 25.35% at 30.72% 35.05%, #FFFFFF 0%, #E2E6FA 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+
   min-height: 100vh;
   padding: clamp(2rem, 4vw, 4rem) 0;
   display: flex;

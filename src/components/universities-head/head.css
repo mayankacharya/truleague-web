@@ -6,7 +6,9 @@
   margin-left: -50vw;
   margin-right: -50vw; */
   padding: clamp(1rem, 3vw, 2rem) 0;
-  background: linear-gradient(180deg, #28105a, #0f0532);
+  /* background: linear-gradient(180deg, #28105a, #0f0532); */
+  background: radial-gradient(58.7% 83.24% at 50% 87.66%, #7A2BA3 0%, #4E156B 100%);
+
   display: flex;
   justify-content: center;
 }

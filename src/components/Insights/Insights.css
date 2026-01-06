@@ -32,7 +32,7 @@
   display: flex;
   align-items: stretch;
   justify-content: flex-start;
-  gap: 96px; /* 👈 SAME GAP BETWEEN ALL CARDS */
+  gap: 0px; /* 👈 SAME GAP BETWEEN ALL CARDS */
   transition: transform 0.5s ease-out;
 }
 
@@ -80,7 +80,7 @@
 
 /* RIGHT PANEL for card */
 .insights-card-container {
-  width: 76%; /* 👈 SAME FOR ALL SLIDES */
+  width: 46%; /* 👈 SAME FOR ALL SLIDES */
   display: flex;
   align-items: center;
   justify-content: flex-start; /* 👈 STARTS AT SAME X POSITION */

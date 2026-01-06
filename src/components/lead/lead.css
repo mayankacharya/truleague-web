@@ -11,8 +11,8 @@
 .lead-impact__content {
   /* width: 100%;
   max-width: 1300px; */
-background: linear-gradient(0deg, #4E156B, #4E156B),
-linear-gradient(180deg, rgba(50, 11, 70, 0.5) 0%, rgba(78, 21, 107, 0) 30.7%, rgba(50, 11, 70, 0.14) 100%);
+background: radial-gradient(58.7% 83.24% at 50% 87.66%, #7A2BA3 0%, #4E156B 100%);
+
   padding: 40px clamp(24px, 4vw, 64px);
   color: #fff;
   /* text-align: center; */

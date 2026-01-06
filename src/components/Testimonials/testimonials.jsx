@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './testimonials.css';
-import AvatarPrimary from '../../assets/OnlySVG/avator2.svg';
-import AvatarSecondary from '../../assets/OnlySVG/mwn1.svg';
+import AvatarPrimary from '../../assets/OnlySVG/laura.svg';
+import AvatarSecondary from '../../assets/OnlySVG/laura.svg';
 
 const testimonialData = [
   {
