@@ -5,6 +5,7 @@
   padding: 64px 24px;
   display: flex;
   justify-content: center;
+  background: #ffffff;
   /* background: linear-gradient(180deg, #ede9ff 0%, #f7f2ff 50%, #ede9ff 100%); */
 }
 

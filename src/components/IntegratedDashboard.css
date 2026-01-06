@@ -49,6 +49,7 @@
   perspective: 1700px;
   transform-style: preserve-3d;
   margin-top: 1rem;
+  /* background: #ffffff; */
 }
 
 .dashboard-stage::before,

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './testimonials.css';
 import AvatarPrimary from '../../assets/OnlySVG/laura.svg';
 import AvatarSecondary from '../../assets/OnlySVG/laura.svg';
+import ArrowLeft from '../../assets/OnlySVG/left.svg';
+import ArrowRight from '../../assets/OnlySVG/right.svg';
 
 // 🔥 COMPLETE DATA STRUCTURE: Multiple testimonials per tab
 const testimonialData = {
@@ -139,29 +141,31 @@ const Testimonials = () => {
               <div className="testimonial-nav">
                 {/* LEFT ARROW - Previous testimonial in current tab */}
                 <button
-                  type="button"
-                  className={`testimonial-nav__arrow testimonial-nav__arrow--prev ${
-                    !isFirst ? 'highlight' : ''
-                  }`}
-                  onClick={handlePrev}
-                  disabled={isFirst}
-                  aria-label="Previous testimonial"
-                >
-                  ←
-                </button>
+  type="button"
+  className={`testimonial-nav__arrow testimonial-nav__arrow--prev ${
+    !isFirst ? 'highlight' : ''
+  }`}
+  onClick={handlePrev}
+  disabled={isFirst}
+  aria-label="Previous testimonial"
+>
+  <img src={ArrowLeft} alt="Previous" />
+</button>
+
  
                 {/* RIGHT ARROW - Next testimonial in current tab */}
-                <button
-                  type="button"
-                  className={`testimonial-nav__arrow testimonial-nav__arrow--next ${
-                    isLast ? 'disabled' : ''
-                  }`}
-                  onClick={handleNext}
-                  disabled={isLast}
-                  aria-label="Next testimonial"
-                >
-                  →
-                </button>
+               <button
+  type="button"
+  className={`testimonial-nav__arrow testimonial-nav__arrow--next ${
+    isLast ? 'disabled' : ''
+  }`}
+  onClick={handleNext}
+  disabled={isLast}
+  aria-label="Next testimonial"
+>
+  <img src={ArrowRight} alt="Next" />
+</button>
+
               </div>
             </div>
           </div>
