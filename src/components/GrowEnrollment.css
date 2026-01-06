@@ -367,14 +367,13 @@
 
 .sentiment-footer {
   position: absolute;
-  top:232px;          /* 👈 is value se niche/uper adjust karo */
+  top:232px;
   left: -300px;
 
   max-width: 280px; 
   background: #fff;
   padding: 10px 14px;
   border-radius: 14px;
-  /* box-shadow: 0 20px 45px rgba(0,0,0,0.16); */
   font-size: 13px;
   line-height: 1.4;
   z-index: 5;
@@ -576,7 +575,6 @@
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
   z-index: 6;
 
-  /* 👇 INITIAL HIDDEN STATE (same as "Thank you…" bubble) */
   opacity: 0;
   transform: translateY(18px);
   transition:
@@ -617,7 +615,7 @@
   }
 
   .sticky-stage {
-    position: sticky !important; /* Keep sticky */
+    position: sticky !important;
     top: 0 !important;
     height: 100vh !important;
     display: flex !important;
@@ -628,31 +626,24 @@
 
   /* 🔥 CARDS WITH STICKY ANIMATION */
   .enroll-card {
-    position: absolute !important; /* Keep absolute for stacking */
+    position: absolute !important;
     display: block !important;
     grid-template-columns: 1fr !important;
     
-    /* Exact Figma dimensions */
     width: 362px !important;
     max-width: calc(100% - 40px) !important;
     min-height: auto !important;
     
-    /* Center alignment */
     left: 0 !important;
     right: 0 !important;
     margin-left: auto !important;
     margin-right: auto !important;
     
-    /* Figma padding */
     padding: 45px 24px !important;
-    
-    /* Figma border radius */
     border-radius: 24px !important;
     
-    /* Allow JS transforms */
     will-change: transform, opacity !important;
     
-    /* Gap between elements */
     gap: 10px;
   }
 
@@ -704,6 +695,10 @@
     font-weight: 600;
     color: #4E156B;
     font-family: "Sora";
+    /* 🔥 INITIALLY HIDDEN */
+    opacity: 0 !important;
+    transform: translateY(20px) !important;
+    transition: opacity 0.6s ease, transform 0.6s ease !important;
   }
 
   .enroll-card__content ul {
@@ -719,6 +714,40 @@
     text-align: start;
     font-weight: 400;
     font-family: "Lexend Deca";
+    /* 🔥 INITIALLY HIDDEN */
+    opacity: 0 !important;
+    transform: translateX(-15px) !important;
+    transition: opacity 0.5s ease, transform 0.5s ease !important;
+  }
+
+  /* 🔥 SHOW TEXT WHEN CARD IS IN VIEW */
+  .enroll-card[style*="z-index: 2"] .enroll-card__content h3,
+  .enroll-card[style*="z-index: 3"] .enroll-card__content h3 {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition-delay: 0.2s;
+  }
+
+  .enroll-card[style*="z-index: 2"] .enroll-card__content li,
+  .enroll-card[style*="z-index: 3"] .enroll-card__content li {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+  }
+
+  /* 🔥 STAGGER LIST ITEMS */
+  .enroll-card[style*="z-index: 2"] .enroll-card__content li:nth-child(1),
+  .enroll-card[style*="z-index: 3"] .enroll-card__content li:nth-child(1) {
+    transition-delay: 0.3s;
+  }
+
+  .enroll-card[style*="z-index: 2"] .enroll-card__content li:nth-child(2),
+  .enroll-card[style*="z-index: 3"] .enroll-card__content li:nth-child(2) {
+    transition-delay: 0.4s;
+  }
+
+  .enroll-card[style*="z-index: 2"] .enroll-card__content li:nth-child(3),
+  .enroll-card[style*="z-index: 3"] .enroll-card__content li:nth-child(3) {
+    transition-delay: 0.5s;
   }
 
   .content-shift-right {
@@ -761,7 +790,6 @@
     right: -10px;
   }
 
-  /* Chat bubble below image */
   .inquiry-chat-bubble {
     position: absolute !important;
     bottom: 108px !important;
@@ -784,7 +812,6 @@
 
   /* ========== CARD 2: AI-POWERED INSIGHTS ========== */
   
-  /* Sentiment card overlaps on image */
   .sentiment-card {
     position: absolute !important;
     top: 50% !important;
@@ -815,7 +842,6 @@
     font-size: 14px;
   }
 
-  /* Sentiment footer below card */
   .sentiment-footer {
     position: absolute !important;
     top: auto !important;
@@ -828,7 +854,6 @@
 
   /* ========== CARD 3: FOSTER BELONGING & TRUST ========== */
   
-  /* Foster overlay with stacked elements */
   .foster-overlay {
     position: absolute !important;
     top: 0 !important;
@@ -842,15 +867,16 @@
     pointer-events: auto !important;
   }
 
-  /* Chat bubbles positioned on image */
   .foster-chat {
     position: relative !important;
     max-width: 48% !important;
     font-size: 11px !important;
     padding: 8px 10px !important;
     margin-bottom: 10px !important;
-    opacity: 1 !important;
-    transform: translateY(0) !important;
+    /* 🔥 INITIALLY HIDDEN */
+    opacity: 0 !important;
+    transform: translateY(20px) !important;
+    transition: opacity 0.6s ease, transform 0.6s ease !important;
   }
 
   .foster-chat.bubble-1 {
@@ -861,13 +887,11 @@
 
   .foster-chat.bubble-2 {
     align-self: flex-end !important;
-    /* top: auto !important; */
     right: auto !important;
     margin-top: 80px;
     top: -220px;
   }
 
-  /* Admission card at bottom */
   .admission-card {
     position: absolute !important;
     bottom: 23px !important;
@@ -875,8 +899,34 @@
     right: 10px !important;
     width: auto !important;
     max-width: 69% !important;
+    /* 🔥 INITIALLY HIDDEN */
+    opacity: 0 !important;
+    transform: scale(0.9) !important;
+    transition: opacity 0.6s ease, transform 0.6s ease !important;
+  }
+
+  /* 🔥 SHOW WHEN FOSTER CARD IS IN VIEW */
+  .enroll-card[style*="z-index: 2"] .foster-chat,
+  .enroll-card[style*="z-index: 3"] .foster-chat {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  .enroll-card[style*="z-index: 2"] .foster-chat.bubble-1,
+  .enroll-card[style*="z-index: 3"] .foster-chat.bubble-1 {
+    transition-delay: 0.3s;
+  }
+
+  .enroll-card[style*="z-index: 2"] .foster-chat.bubble-2,
+  .enroll-card[style*="z-index: 3"] .foster-chat.bubble-2 {
+    transition-delay: 0.5s;
+  }
+
+  .enroll-card[style*="z-index: 2"] .admission-card,
+  .enroll-card[style*="z-index: 3"] .admission-card {
     opacity: 1 !important;
     transform: scale(1) !important;
+    transition-delay: 0.7s;
   }
 
   .admission-title {
@@ -895,7 +945,6 @@
     font-size: 11px;
   }
 
-  /* Disable animations on mobile */
   .foster-overlay.show .bubble-1,
   .foster-overlay.show .bubble-2,
   .foster-overlay.show .admission-card {

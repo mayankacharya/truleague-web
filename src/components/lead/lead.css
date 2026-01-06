@@ -117,4 +117,27 @@ font-size: 32px;
   .lead-impact__metric strong {
     font-size: 22px;
   }
+  .lead-impact {
+  /* width: 100vw; */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 13px 24px;
+  display: flex;
+  justify-content: center;
+  /* background: linear-gradient(180deg, #ede9ff 0%, #f7f2ff 50%, #ede9ff 100%); */
+}
+
+.lead-impact__content {
+  /* width: 100%;
+  max-width: 1300px; */
+background: radial-gradient(58.7% 83.24% at 50% 87.66%, #7A2BA3 0%, #4E156B 100%);
+
+  padding: 40px clamp(24px, 4vw, 64px);
+  color: #fff;
+  /* text-align: center; */
+  position: relative;
+  width: 100vw; 
+  border-radius: 0;
+  margin: 139px;
+}
 }
