@@ -4,6 +4,60 @@
   width: 100%;
   background: #ffffff;
 }
+/* ================= Belonging Image – Fixed Small Avatar ================= */
+
+.belonging-fixed-avatar {
+  position: absolute;
+
+  /* LEFT TOP – thoda niche */
+  top: 21px;
+  left: -89px;
+
+  width: 92px;
+  height: 92px;
+  aspect-ratio: 1 / 1;
+
+  border-radius: 50%;
+
+  /* 🔥 SVG FIX */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* background-color: #fff; */
+  /* border: 3px solid #fff; */
+  /* box-shadow: 0 8px 24px rgba(0,0,0,0.18); */
+
+  z-index: 6;
+}
+
+/* ================= Foster chat – RIGHT avatar ================= */
+
+.foster-chat.bubble-2 {
+  padding-right: 44px; /* 👈 avatar ke liye space */
+}
+
+/* RIGHT avatar */
+.foster-avatar-right {
+  position: absolute;
+  right: -61px;   /* 👈 bubble ke bahar */
+  top: 25px;
+
+  width: px;
+  height: 58px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* background-color: #fff; */
+  /* border: 3px solid #fff; */
+  /* box-shadow: 0 8px 24px rgba(0,0,0,0.18); */
+
+  z-index: 6;
+}
 
 /* ================= HEADER ================= */
 
@@ -950,5 +1004,11 @@
   .foster-overlay.show .bubble-2,
   .foster-overlay.show .admission-card {
     animation: none !important;
+  }
+   .belonging-fixed-avatar {
+    width: 34px;
+    height: 34px;
+    top: 16px;
+    left: -12px;
   }
 }

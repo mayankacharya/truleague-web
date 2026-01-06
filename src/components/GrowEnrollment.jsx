@@ -6,6 +6,9 @@ import belong from "../assets/OnlySVG/belonging.svg";
 import dummy1 from "../assets/OnlySVG/mwn1.svg";
 import dummy2 from "../assets/OnlySVG/avator2.svg";
 import poweredByAI from "../assets/OnlySVG/Powered by AI.svg";
+import dummy3 from "../assets/OnlySVG/glad.svg";
+import dummy4 from "../assets/OnlySVG/Thank.svg";
+
 
 const SentimentCard = () => {
   const ref = useRef(null);
@@ -101,9 +104,18 @@ const FosterOverlays = () => {
       </div>
 
       <div className="foster-chat bubble-2">
-        Thank you for all your answers.<br />
-        Now I have clarity to move forward.
-      </div>
+  <div className="foster-text">
+    Thank you for all your answers.<br />
+    Now I have clarity to move forward.
+  </div>
+
+  {/* 👇 RIGHT SIDE AVATAR */}
+  <div
+    className="foster-avatar-right"
+    style={{ backgroundImage: `url(${dummy4})` }}
+  />
+</div>
+
 
       <div className="admission-card">
         <div className="admission-title">Admission Stage</div>
@@ -342,28 +354,37 @@ export default function GrowEnrollment() {
                 </ul>
               </div>
 
-              <div className="enroll-card__image">
-                <img className="main-image" src={card.image} alt={card.title} />
+             <div className="enroll-card__image">
+  <img className="main-image" src={card.image} alt={card.title} />
 
-                {card.title === "Inquiry to enrollment" && (
-                  <>
-                    <img className="corner-avatar top-left" src={dummy1} alt="" />
-                    <img className="corner-avatar bottom-right" src={dummy2} alt="" />
-                    <div className={`inquiry-chat-bubble inquiry-reveal`}>
-                      <img src={dummy1} alt="" className="chat-avatar" />
-                      <p>
-                        Keen to know about sport clubs <br />
-                        and activities in the college.<br />
-                        I am a state level basketball player.
-                      </p>
-                    </div>
-                  </>
-                )}
+  {/* 👇 FIXED SMALL AVATAR ON BELONGING IMAGE */}
+  {card.title === "Foster belonging & trust" && (
+  <div
+    className="belonging-fixed-avatar"
+    style={{ backgroundImage: `url(${dummy3})` }}
+  />
+)}
 
-                {card.title === "AI-powered insights" && <SentimentCard />}
 
-                {card.title === "Foster belonging & trust" && <FosterOverlays />}
-              </div>
+  {card.title === "Inquiry to enrollment" && (
+    <>
+      <img className="corner-avatar top-left" src={dummy1} alt="" />
+      <img className="corner-avatar bottom-right" src={dummy2} alt="" />
+      <div className="inquiry-chat-bubble inquiry-reveal">
+        <img src={dummy1} alt="" className="chat-avatar" />
+        <p>
+          Keen to know about sport clubs <br />
+          and activities in the college.<br />
+          I am a state level basketball player.
+        </p>
+      </div>
+    </>
+  )}
+
+  {card.title === "AI-powered insights" && <SentimentCard />}
+  {card.title === "Foster belonging & trust" && <FosterOverlays />}
+</div>
+
             </div>
           );
         })}
