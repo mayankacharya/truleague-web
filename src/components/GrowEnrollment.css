@@ -764,10 +764,10 @@
   /* Chat bubble below image */
   .inquiry-chat-bubble {
     position: absolute !important;
-    bottom: 20px !important;
-    left: -18px !important;
+    bottom: 108px !important;
+    left: -36px !important;
     right: 10px !important;
-    max-width: calc(100% - 20px) !important;
+    max-width: calc(125% - 20px) !important;
     opacity: 1 !important;
     transform: translateY(0) !important;
   }
