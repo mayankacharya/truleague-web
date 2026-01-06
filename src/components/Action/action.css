@@ -96,7 +96,7 @@ font-size: 52px;  line-height: 74px;
 
 .action-cta:hover {
   transform: translateY(-1px);
-  box-shadow: 0 30px 45px rgba(29, 8, 58, 0.4);
+  /* box-shadow: 0 30px 45px rgba(29, 8, 58, 0.4); */
 }
 
 .action-cta__badge {
