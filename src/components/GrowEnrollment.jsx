@@ -222,26 +222,35 @@ export default function GrowEnrollment() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  useEffect(() => {
-    const onScroll = () => {
-      const section = sectionRef.current;
-      if (!section) return;
+ useEffect(() => {
+  const onScroll = () => {
+    const section = sectionRef.current;
+    if (!section) return;
 
-      const rect = section.getBoundingClientRect();
-      const scroll = -rect.top;
-      const vh = window.innerHeight;
+    const rect = section.getBoundingClientRect();
+    const scroll = Math.max(0, -rect.top);
+    const vh = window.innerHeight;
 
-      const index = Math.floor(scroll / vh);
-      const localProgress = (scroll % vh) / vh;
+    const rawIndex = scroll / vh;
 
-      setActiveIndex(Math.max(0, Math.min(index, cards.length - 1)));
-      setProgress(Math.max(0, Math.min(localProgress, 1)));
-    };
+    // 👇 stable index (NO jump)
+    const index = Math.min(
+      cards.length - 1,
+      Math.floor(rawIndex)
+    );
 
-    window.addEventListener("scroll", onScroll);
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    // 👇 progress tied to SAME index
+    const localProgress = rawIndex - index;
+
+    setActiveIndex(index);
+    setProgress(Math.min(Math.max(localProgress, 0), 1));
+  };
+
+  window.addEventListener("scroll", onScroll);
+  onScroll();
+  return () => window.removeEventListener("scroll", onScroll);
+}, []);
+
 
   return (
     <section
@@ -275,12 +284,12 @@ export default function GrowEnrollment() {
           const ENTER_OFFSET = isMobile ? 80 : 140; // 🔥 WEB: 120 → 140
 
           if (i < activeIndex) {
-            translateY = -EXIT_Y;
-            scale = isMobile ? 0.92 : 0.88; // 🔥 WEB: 0.9 → 0.88
-            blur = isMobile ? 4 : 6;
-            opacity = 0;
-            zIndex = 0;
-          }
+  translateY = -EXIT_Y + progress * 40; // 👈 tiny easing
+  opacity = 0;
+  scale = isMobile ? 0.92 : 0.9;
+  zIndex = 0;
+}
+
 
           if (i === activeIndex) {
             translateY = -progress * EXIT_Y;
@@ -290,10 +299,13 @@ export default function GrowEnrollment() {
             zIndex = 2;
           }
 
-          if (i === activeIndex + 1) {
-            translateY = vh - ENTER_OFFSET - progress * (vh - ENTER_OFFSET);
-            zIndex = 3;
-          }
+         if (i === activeIndex + 1) {
+  const startOffset = vh * 0.92; // 👈 IMPORTANT
+  translateY =
+    startOffset - progress * (startOffset - ENTER_OFFSET);
+  zIndex = 3;
+}
+
 
           if (i > activeIndex + 1) {
             translateY = vh;
