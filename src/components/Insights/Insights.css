@@ -107,6 +107,7 @@
     #cdd4ff 60.64%
   );
   overflow: hidden;
+  position: relative;
 }
 
 .card-icon {
@@ -217,4 +218,16 @@
   margin-bottom: 24px;
   line-height: 1.50;
   margin: 25px;
+}
+.card-number {
+  position: absolute;
+  bottom: 24px;
+  right: 28px;
+
+  font-size: 72px;
+  font-weight: 600;
+  font-family: "sora", sans-serif;
+
+  color: rgba(78, 21, 107, 0.18); /* faded purple */
+  pointer-events: none;
 }

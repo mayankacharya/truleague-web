@@ -154,6 +154,10 @@ const InsightSlide = ({ card, index, local }) => {
               style={{ transform: `translateX(${translateX}px)` }}
             />
             <p className="card-text">{card.title}</p>
+             {/* 🔢 CARD NUMBER */}
+  <span className="card-number">
+    {String(index + 1).padStart(2, "0")}
+  </span>
           </div>
         </div>
       </div>

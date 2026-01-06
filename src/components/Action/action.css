@@ -118,7 +118,37 @@ font-size: 52px;  line-height: 74px;
   width: 34px;
   height: 34px;
   object-fit: contain;
+  
+
+  /* rocket white */
+  /* filter: brightness(0) invert(1); */
 }
+/* button hover */
+.action-cta:hover {
+  background: #ffffff;
+  color: rgba(78, 21, 107, 1);
+  
+}
+
+/* badge hover */
+.action-cta:hover .action-cta__badge {
+  background: rgba(78, 21, 107, 1);
+  
+}
+
+/* rocket hover – right side ghoom jayega */
+.action-cta:hover .action-cta__badge-icon {
+  transform: rotate(0deg); /* 👉 right side */
+
+  /* 👇 rocket color #ffd13e */
+  filter: brightness(0) saturate(100%) invert(82%) sepia(61%)
+          saturate(749%) hue-rotate(360deg)
+          brightness(101%) contrast(101%);
+          transform: rotate(45deg);   /* rocket upar ki taraf */
+  transition: transform 0.4s ease, filter 0.3s ease;
+}
+
+
 
 /* ------------------------------
    Cursor trailing dot styles
