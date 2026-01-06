@@ -663,7 +663,7 @@
   /* Header */
   .grow-enrollment__header {
     padding: 0 1.5rem;
-    /* margin-bottom: -1rem; */
+    margin-bottom: -1rem;
   }
 
   .grow-enrollment__header h2 {
