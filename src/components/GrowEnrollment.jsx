@@ -15,9 +15,9 @@ const SentimentCard = () => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setStart(true);   // 👈 jab dikhe → start
+          setStart(true);
         } else {
-          setStart(false);  // 👈 jab bahar jaye → reset
+          setStart(false);
         }
       },
       { threshold: 0.6 }
@@ -85,19 +85,16 @@ const FosterOverlays = () => {
     return () => observer.disconnect();
   }, []);
 
-  // count up values
   const interested = useCountUp(1200, show);
   const applied = useCountUp(850, show);
   const enrolled = useCountUp(430, show);
 
-  // percentages (max = 1200)
   const interestedPct = (interested / 1200) * 100;
   const appliedPct = (applied / 1200) * 100;
   const enrolledPct = (enrolled / 1200) * 100;
 
   return (
     <div ref={ref} className={`foster-overlay ${show ? "show" : ""}`}>
-      {/* Chat bubbles */}
       <div className="foster-chat bubble-1">
         Glad to talk to you.<br />
         Let me know if you need help in admissions.
@@ -108,64 +105,39 @@ const FosterOverlays = () => {
         Now I have clarity to move forward.
       </div>
 
-      {/* ✅ Admission Stage – FIGMA STYLE */}
       <div className="admission-card">
         <div className="admission-title">Admission Stage</div>
 
         <div className="admission-row interested">
-  <div
-    className="admission-fill"
-    style={{ width: `${interestedPct}%` }}
-  />
-  <span className="label">Interested</span>
-  <strong>{interested}</strong>
-</div>
+          <div
+            className="admission-fill"
+            style={{ width: `${interestedPct}%` }}
+          />
+          <span className="label">Interested</span>
+          <strong>{interested}</strong>
+        </div>
 
-<div className="admission-row applied">
-  <div
-    className="admission-fill"
-    style={{ width: `${appliedPct}%` }}
-  />
-  <span className="label">Applied</span>
-  <strong>{applied}</strong>
-</div>
-
-<div className="admission-row enrolled">
-  <div
-    className="admission-fill"
-    style={{ width: `${enrolledPct}%` }}
-  />
-  <span className="label">Enrolled</span>
-  <strong>{enrolled}</strong>
-</div>
-
-
-        {/* <div className="admission-row applied">
+        <div className="admission-row applied">
           <div
             className="admission-fill"
             style={{ width: `${appliedPct}%` }}
-          >
-            Applied
-          </div>
+          />
+          <span className="label">Applied</span>
           <strong>{applied}</strong>
-        </div> */}
+        </div>
 
-        {/* <div className="admission-row enrolled">
+        <div className="admission-row enrolled">
           <div
             className="admission-fill"
             style={{ width: `${enrolledPct}%` }}
-          >
-            Enrolled
-          </div>
+          />
+          <span className="label">Enrolled</span>
           <strong>{enrolled}</strong>
-        </div> */}
+        </div>
       </div>
     </div>
   );
 };
-
-
-
 
 const useCountUp = (target, start) => {
   const [value, setValue] = useState(0);
@@ -194,37 +166,13 @@ const useCountUp = (target, start) => {
   return value;
 };
 
-
-const useTypewriter = (text, active, speed = 28) => {
-  const [output, setOutput] = useState("");
-
-  useEffect(() => {
-    if (!active) {
-      setOutput("");
-      return;
-    }
-
-    let i = 0;
-    const timer = setInterval(() => {
-      i++;
-      setOutput(text.slice(0, i));
-      if (i >= text.length) clearInterval(timer);
-    }, speed);
-
-    return () => clearInterval(timer);
-  }, [text, active, speed]);
-
-  return output;
-};
-
-
 const cards = [
   {
     title: "Inquiry to enrollment",
     points: [
       "Capture stealth applicants early",
       "Full-funnel engagement and conversions",
-      "Move students from ‘maybe’ to ‘yes’"
+      "Move students from 'maybe' to 'yes'"
     ],
     image: enrollmentSVG,
     align: "right"
@@ -261,6 +209,18 @@ export default function GrowEnrollment() {
   const sectionRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -293,7 +253,7 @@ export default function GrowEnrollment() {
       <div className="grow-enrollment__header">
         <h2>Increase Yield and Grow Enrollment</h2>
         <p>
-          Yield isn’t a moment—it’s a relationship. TruLeague builds that
+          Yield isn't a moment—it's a relationship. TruLeague builds that
           relationship early, sustaining it through personalized, peer-driven
           engagement and real-time insights.
         </p>
@@ -310,21 +270,22 @@ export default function GrowEnrollment() {
           let opacity = 1;
           let zIndex = 1;
 
-          const EXIT_Y = vh * 0.45;
-          const ENTER_OFFSET = 120;
+          // Mobile-specific animation adjustments
+          const EXIT_Y = isMobile ? vh * 0.5 : vh * 0.45;
+          const ENTER_OFFSET = isMobile ? 80 : 120;
 
           if (i < activeIndex) {
             translateY = -EXIT_Y;
-            scale = 0.9;
-            blur = 6;
+            scale = isMobile ? 0.92 : 0.9;
+            blur = isMobile ? 4 : 6;
             opacity = 0;
             zIndex = 0;
           }
 
           if (i === activeIndex) {
             translateY = -progress * EXIT_Y;
-            scale = 1 - progress * 0.08;
-            blur = progress * 4;
+            scale = 1 - progress * (isMobile ? 0.06 : 0.08);
+            blur = progress * (isMobile ? 3 : 4);
             opacity = 1 - progress * 0.25;
             zIndex = 2;
           }
@@ -348,67 +309,49 @@ export default function GrowEnrollment() {
               style={{
                 background: gradients[i % gradients.length],
                 transform: `translateY(${translateY}px) scale(${scale})`,
-                
                 opacity,
                 zIndex
               }}
             >
-       <div
-  className={`enroll-card__content ${
-    card.title === "AI-powered insights" ? "content-shift-right" : ""
-  } ${
-    card.title === "Foster belonging & trust" ? "foster-content" : ""
-  }`}
->
-
-
+              <div
+                className={`enroll-card__content ${
+                  card.title === "AI-powered insights" ? "content-shift-right" : ""
+                } ${
+                  card.title === "Foster belonging & trust" ? "foster-content" : ""
+                }`}
+              >
                 <h3>{card.title}</h3>
                 <ul className="foster-points">
-  {card.points.map((p, idx) => (
-    <li key={idx} style={{ animationDelay: `${idx * 0.2}s` }}>
-      {p}
-    </li>
-  ))}
-</ul>
-
+                  {card.points.map((p, idx) => (
+                    <li key={idx} style={{ animationDelay: `${idx * 0.2}s` }}>
+                      {p}
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-             <div className="enroll-card__image">
-  <img className="main-image" src={card.image} alt={card.title} />
+              <div className="enroll-card__image">
+                <img className="main-image" src={card.image} alt={card.title} />
 
-  {/* corner avatars – sirf first card ke liye */}
-  {card.title === "Inquiry to enrollment" && (
-  <>
-    {/* top avatar */}
-    <img className="corner-avatar top-left" src={dummy1} alt="" />
+                {card.title === "Inquiry to enrollment" && (
+                  <>
+                    <img className="corner-avatar top-left" src={dummy1} alt="" />
+                    <img className="corner-avatar bottom-right" src={dummy2} alt="" />
+                    <div className={`inquiry-chat-bubble inquiry-reveal`}>
+                      <img src={dummy1} alt="" className="chat-avatar" />
+                      <p>
+                        Keen to know about sport clubs <br />
+                        and activities in the college.<br />
+                        I am a state level basketball player.
+                      </p>
+                    </div>
+                  </>
+                )}
 
-    {/* right avatar */}
-    <img className="corner-avatar bottom-right" src={dummy2} alt="" />
+                {card.title === "AI-powered insights" && <SentimentCard />}
 
-    {/* 🔥 bottom chat bubble (FIGMA MATCH) */}
-   <div className={`inquiry-chat-bubble inquiry-reveal`}>
-  <img src={dummy1} alt="" className="chat-avatar" />
-  <p>
-    Keen to know about sport clubs <br />
-    and activities in the college.<br />
-    I am a state level basketball player.
-  </p>
-</div>
-
-  </>
-)}
-
-
-   {/* ✅ ONLY AI-powered insights */}
-  {card.title === "AI-powered insights" && (
-  <SentimentCard />
-)}
-
-{/* ✅ Foster belonging & trust overlays */}
-{card.title === "Foster belonging & trust" && <FosterOverlays />}
-
-</div>
-
+                {card.title === "Foster belonging & trust" && <FosterOverlays />}
+              </div>
             </div>
           );
         })}

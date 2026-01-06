@@ -9,7 +9,7 @@
 
 .grow-enrollment__header {
   /* max-width: 760px; */
-  /* margin: 0 auto 8rem; */
+  margin: 0 auto 4rem;
   text-align: center;
   padding: 0px 10rem;
 }
@@ -557,155 +557,6 @@
   background: #EAF6EC;
 }
 
-/* ================= 📱 MOBILE FIX ================= */
-
-@media (max-width: 600px) {
-  .grow-enrollment__header {
-  /* max-width: 760px; */
-  margin: 0 auto 0rem;
-  text-align: center;
-  padding: 0 12rem;
-}
-  .grow-enrollment__header {
-  /* max-width: 760px; */
-  /* margin: 0 auto 12rem; */
-  text-align: center;
-  padding: 0 0rem;
-}
-  .grow-enrollment__header h2 {
-    font-size: 32px;
-    margin: 8px;
-  }
-
-  .grow-enrollment__header p {
-    font-size: 18px;
-    margin: 33px;
-  }
-
-  .sticky-stage {
-    height: 100vh;
-  }
-
-  .enroll-card {
-    grid-template-columns: 1fr;     /* 🔥 single column */
-    gap: 24px;
-    padding: 32px 24px;
-    min-height: auto;
-  }
-
-  /* 🔥 FORCE ORDER: TEXT FIRST, IMAGE SECOND */
-  .enroll-card__content {
-    order: 1;
-    text-align: left;
-  }
-
-  .enroll-card__image {
-    order: 2;
-  }
-
-  /* 🔥 disable RTL tricks on mobile */
-  .layout-left,
-  .layout-right {
-    direction: ltr;
-  }
-  .enroll-card__image img {
-  /* width: 100%; */
-  border-radius: 20px;
-  object-fit: cover;
-  /* box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25); */
-    width: 252px;
-    height: 305px;
-}
-
-
-/* Positions (Figma like) */
-.foster-chat.bubble-1 {
-  top: 5px;
-  left: 30px;
-  font-size: 10px;
-}
-
- .foster-chat.bubble-2 {
-  top: 266px;
-  right: 161px;
-  font-size: 10px;
-
-}
-
-/* Admission stage card */
-.admission-card {
-  position: absolute;
-  bottom: 65px;
-  left: 128px;
-  width: 192px;
-  background: #fff;
-  padding: 14px;
-  border-radius: 14px;
-  box-shadow: 0 20px 45px rgba(0,0,0,0.18);
-  opacity: 0;
-  transform: scale(0.95);
-}
-
-.admission-title {
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #4E156B;
-}
-
-.admission-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-  margin-bottom: 6px;
-}
-
-.admission-row.highlight {
-  background: #F1F3FF;
-  padding: 6px;
-  border-radius: 8px;
-}
-
-/* Trigger animations */
-.foster-overlay.show .bubble-1 {
-  animation: fosterFloatIn 0.5s ease 0.2s forwards;
-}
-
-.foster-overlay.show .bubble-2 {
-  animation: fosterFloatIn 0.5s ease 0.45s forwards;
-}
-
-.foster-overlay.show .admission-card {
-  animation: fosterScaleIn 0.5s ease 0.7s forwards;
-}
-
-@keyframes fosterFloatIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fosterScaleIn {
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-/* ===== Admission Stage – FINAL FIGMA FIX ===== */
-.sentiment-card {
-  position: absolute;
-  top: 2px;
-  left: 20px;
-  width: 303px;
-  background: #fff;
-  padding: 18px;
-  border-radius: 14px;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.18);
-  z-index: 5;
-  height:188px
-}
-}
 /* ================= Inquiry bottom chat bubble ================= */
 .inquiry-chat-bubble {
   position: absolute;
@@ -725,7 +576,7 @@
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
   z-index: 6;
 
-  /* 👇 INITIAL HIDDEN STATE (same as “Thank you…” bubble) */
+  /* 👇 INITIAL HIDDEN STATE (same as "Thank you…" bubble) */
   opacity: 0;
   transform: translateY(18px);
   transition:
@@ -754,4 +605,300 @@
 .enroll-card[style*="z-index: 2"] .inquiry-chat-bubble {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ================= 📱 MOBILE VIEW - VERTICAL SCROLL ================= */
+
+@media (max-width: 768px) {
+  
+  /* 🔥 ENABLE STICKY ANIMATION ON MOBILE */
+  .grow-enrollment {
+    /* Keep section height for scroll animation */
+  }
+
+  .sticky-stage {
+    position: sticky !important; /* Keep sticky */
+    top: 0 !important;
+    height: 100vh !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 0 !important;
+  }
+
+  /* 🔥 CARDS WITH STICKY ANIMATION */
+  .enroll-card {
+    position: absolute !important; /* Keep absolute for stacking */
+    display: block !important;
+    grid-template-columns: 1fr !important;
+    
+    /* Exact Figma dimensions */
+    width: 362px !important;
+    max-width: calc(100% - 40px) !important;
+    min-height: auto !important;
+    
+    /* Center alignment */
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    
+    /* Figma padding */
+    padding: 45px 24px !important;
+    
+    /* Figma border radius */
+    border-radius: 24px !important;
+    
+    /* Allow JS transforms */
+    will-change: transform, opacity !important;
+    
+    /* Gap between elements */
+    gap: 10px;
+  }
+
+  /* Individual card heights from Figma */
+  .enroll-card:first-of-type {
+    height: 673.66px !important;
+  }
+
+  .enroll-card:nth-of-type(2) {
+    height: 722.29px !important;
+  }
+
+  .enroll-card:nth-of-type(3) {
+    height: 726px !important;
+  }
+
+  /* Header */
+  .grow-enrollment__header {
+    padding: 0 1.5rem;
+    margin-bottom: -6rem;
+  }
+
+  .grow-enrollment__header h2 {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .grow-enrollment__header p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  /* Disable RTL layout */
+  .layout-left,
+  .layout-right {
+    direction: ltr !important;
+  }
+
+  /* Content section - CENTER ALIGNED */
+  .enroll-card__content {
+    margin-bottom: 24px;
+    text-align: center !important;
+  }
+
+  .enroll-card__content h3 {
+    font-size: 28px;
+    margin-bottom: 16px;
+    text-align: start;
+    font-weight: 600;
+    color: #4E156B;
+    font-family: "Sora";
+  }
+
+  .enroll-card__content ul {
+    padding-left: 0 !important;
+    list-style: none !important;
+    text-align: center;
+  }
+
+  .enroll-card__content li {
+    font-size: 18px;
+    line-height: 100%;
+    margin-bottom: 10px;
+    text-align: start;
+    font-weight: 400;
+    font-family: "Lexend Deca";
+  }
+
+  .content-shift-right {
+    padding-left: 0 !important;
+  }
+
+  /* Image container */
+  .enroll-card__image {
+    position: relative;
+    width: 100%;
+  }
+
+  .main-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 16px;
+  }
+
+  .enroll-card__image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* ========== CARD 1: INQUIRY TO ENROLLMENT ========== */
+  
+  .corner-avatar.top-left {
+    width: 99px;
+    height: 99px;
+    top: 16px;
+    left: -35px;
+  }
+
+  .corner-avatar.bottom-right {
+    width: 75px;
+    height: 75px;
+    bottom: auto;
+    top: 120px;
+    right: -10px;
+  }
+
+  /* Chat bubble below image */
+  .inquiry-chat-bubble {
+    position: absolute !important;
+    bottom: 20px !important;
+    left: -18px !important;
+    right: 10px !important;
+    max-width: calc(100% - 20px) !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  .inquiry-chat-bubble p {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .inquiry-chat-bubble .chat-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* ========== CARD 2: AI-POWERED INSIGHTS ========== */
+  
+  /* Sentiment card overlaps on image */
+  .sentiment-card {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 90% !important;
+    max-width: 320px !important;
+    height: auto !important;
+    padding: 14px !important;
+    z-index: 10 !important;
+  }
+
+  .sentiment-header {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+  .sentiment-grid {
+    gap: 6px;
+  }
+
+  .sentiment-box {
+    padding: 6px;
+    font-size: 10px;
+  }
+
+  .sentiment-box strong {
+    font-size: 14px;
+  }
+
+  /* Sentiment footer below card */
+  .sentiment-footer {
+    position: absolute !important;
+    top: auto !important;
+    bottom: -121px !important;
+    left: 24% !important;
+    transform: translateX(-50%) !important;
+    max-width: 280px !important;
+    font-size: 12px !important;
+  }
+
+  /* ========== CARD 3: FOSTER BELONGING & TRUST ========== */
+  
+  /* Foster overlay with stacked elements */
+  .foster-overlay {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    padding: 10px !important;
+    pointer-events: auto !important;
+  }
+
+  /* Chat bubbles positioned on image */
+  .foster-chat {
+    position: relative !important;
+    max-width: 48% !important;
+    font-size: 11px !important;
+    padding: 8px 10px !important;
+    margin-bottom: 10px !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  .foster-chat.bubble-1 {
+    align-self: flex-start !important;
+    top: auto !important;
+    left: auto !important;
+  }
+
+  .foster-chat.bubble-2 {
+    align-self: flex-end !important;
+    /* top: auto !important; */
+    right: auto !important;
+    margin-top: 80px;
+    top: -220px;
+  }
+
+  /* Admission card at bottom */
+  .admission-card {
+    position: absolute !important;
+    bottom: 23px !important;
+    left: -43px !important;
+    right: 10px !important;
+    width: auto !important;
+    max-width: 69% !important;
+    opacity: 1 !important;
+    transform: scale(1) !important;
+  }
+
+  .admission-title {
+    font-size: 11px;
+  }
+
+  .admission-row {
+    height: 28px;
+    padding: 0 8px;
+    margin-bottom: 6px;
+    font-size: 11px;
+  }
+
+  .admission-row .label,
+  .admission-row strong {
+    font-size: 11px;
+  }
+
+  /* Disable animations on mobile */
+  .foster-overlay.show .bubble-1,
+  .foster-overlay.show .bubble-2,
+  .foster-overlay.show .admission-card {
+    animation: none !important;
+  }
 }
