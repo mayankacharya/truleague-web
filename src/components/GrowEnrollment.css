@@ -909,10 +909,10 @@
   
   .sentiment-card {
     position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
+    top: 28% !important;
+    left: 68% !important;
     transform: translate(-50%, -50%) !important;
-    width: 90% !important;
+    width: 62% !important;
     max-width: 320px !important;
     height: auto !important;
     padding: 14px !important;
@@ -940,8 +940,8 @@
   .sentiment-footer {
     position: absolute !important;
     top: auto !important;
-    bottom: -121px !important;
-    left: 24% !important;
+    bottom: -158px !important;
+    left: -12% !important;
     transform: translateX(-50%) !important;
     max-width: 280px !important;
     font-size: 12px !important;
