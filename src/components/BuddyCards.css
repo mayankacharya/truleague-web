@@ -327,7 +327,7 @@
 
 .buddy-fancy-row--scroll {
   position: relative;
-  animation: buddy-marquee 24s linear infinite;
+  animation: buddy-marquee 44s linear infinite;
   display: flex;
   column-gap: 88px;       /* ⬅️ yahan se cards ke beech gap */
   padding: 0 40px;        /* thoda side padding (optional, smooth look) */
