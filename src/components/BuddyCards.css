@@ -327,8 +327,7 @@
 
 .buddy-fancy-row--scroll {
   position: relative;
-  transform: translateX(-33.33%);
-  animation: buddy-marquee 12s linear infinite;
+  animation: buddy-marquee 24s linear infinite;
   display: flex;
   column-gap: 88px;       /* ⬅️ yahan se cards ke beech gap */
   padding: 0 40px;        /* thoda side padding (optional, smooth look) */
@@ -345,15 +344,19 @@
 }
 
 
-/* marquee: row ko left ki taraf move karo.
-   cards array ko triple kiya hai, aur animation second copy se -66.66% tak chalta hai
-   taaki 7th/8th card bich mein rahe aur pehle card ke jump se bach sake */
+/* marquee: seamless infinite scroll
+   Triple array hai: [8 logos][8 logos][8 logos] = 24 cards total
+   Har card: 160px width + 88px gap = 248px
+   8 logos ka total distance: 248px × 8 = 1984px
+   
+   Animation exactly 8 logos move karega, fir seamlessly loop hoga
+*/
 @keyframes buddy-marquee {
   0% {
-    transform: translateX(-33.33%);
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(-66.66%);
+    transform: translateX(-1984px);
   }
 }
 
@@ -400,9 +403,19 @@
 
   /* CONTINUOUS SCROLL */
   .buddy-fancy-row--scroll {
-    animation: buddy-marquee 10s linear infinite;  /* ⬅️ faster */
+    animation: buddy-marquee-mobile 14s linear infinite;
     column-gap: 14px;           /* ⬅️ logos paas-paas */
     padding: 0 16px;
+  }
+  
+  /* Mobile: 140px card + 14px gap = 154px per logo, 8 logos = 1232px */
+  @keyframes buddy-marquee-mobile {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-1232px);
+    }
   }
 
   /* REMOVE FAN PHASE VISUAL HEAVINESS */
