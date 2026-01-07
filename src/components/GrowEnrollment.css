@@ -41,7 +41,7 @@
 .foster-avatar-right {
   position: absolute;
   right: -61px;   /* 👈 bubble ke bahar */
-  top: 11px;
+  top: 24px;
 
   width: px;
   height: 58px;
@@ -181,15 +181,47 @@
   /* box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25); */
       /* width: 370px;
     height: 520px; */
-    width: 370px;
+    /* width: 370px; */
 }
-
+.enroll-card__image > .main-image {
+  width: 370px;
+  border-radius: 20px;
+  object-fit: cover;
+}
 /* ================= ALIGNMENT (DESKTOP) ================= */
 
 .layout-left {
   direction: rtl;
 }
+/* .sentiment-emoji{
+  width: 20px;
+  height: 20px;
+  margin:0px 0px -6px 20px
 
+} */
+ .positive1{
+  width: 20px;
+  height: 20px;
+ margin: 0px 0px -6px 41px
+}
+
+.verypositive1{
+  width: 20px;
+  height: 20px;
+ margin: 0px 0px -6px 20px
+}
+
+.neutral1{
+  width: 20px;
+  height: 20px;
+ margin: 0px 0px -6px 46px
+}
+
+.negative1{
+  width: 20px;
+  height: 20px;
+ margin:  0px 0px -5px 36px
+} 
 .layout-left > * {
   direction: ltr;
 }
@@ -270,8 +302,8 @@
   font-weight: 600;
 }
 .sentiment-box.positive {
-  background: #EEF2FF;
-  color: #4F46E5;
+  background: #EBF2FD;
+  /* color: #4F46E5; */
 }
 
 /* subtle entry animation */
@@ -372,18 +404,21 @@
   border-radius: 14px;
   box-shadow: 0 24px 60px rgba(0,0,0,0.18);
   z-index: 5;
-  height:188px
+  /* height:188px */
 }
+
+
 
 .sentiment-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 400;
   color: #4E156B;
   margin-bottom: 10px;
   font-family: "Lexend Deca";
+  line-height: 125%;
   
 }
 
@@ -397,6 +432,9 @@
   border-radius: 10px;
   padding: 8px;
   font-size: 12px;
+  line-height: 24px;
+  color: #494f73;
+  font-weight: 400;
 }
 
 .sentiment-box strong {
@@ -407,17 +445,17 @@
 
 .sentiment-box.very {
   background: #EAF8F1;
-  color: #1E9C62;
+  /* color: #1E9C62; */
 }
 
 .sentiment-box.neutral {
-  background: #F2F3F7;
-  color: #555;
+  background: #FAF1EB;
+  /* color: #555; */
 }
 
 .sentiment-box.negative {
-  background: #FDECEC;
-  color: #D64545;
+  background: #FCE7EB;
+  /* color: #D64545; */
 }
 
 .sentiment-footer {
@@ -483,6 +521,7 @@
   transform: translateY(16px);
   color: #494F73 ;
   font-family: "lexend deca";
+  font-weight: 300;
 }
 
 /* Positions (Figma like) */
@@ -493,7 +532,7 @@
 
 .foster-chat.bubble-2 {
   top: 150px;
-  right: 0px;
+  right: 121px;
 }
 
 /* Admission stage card */
@@ -511,10 +550,11 @@
 }
 
 .admission-title {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 400;
   margin-bottom: 8px;
   color: #4E156B;
+  line-height: 125%;
 }
 
 .admission-row {
@@ -567,7 +607,7 @@
   padding: 0 12px;
   margin-bottom: 10px;
   border-radius: 10px;
-  background: #f2f2f2;
+  /* background: #f2f2f2; */
   overflow: hidden;
 }
 
@@ -648,8 +688,8 @@
 
 /* AVATAR */
 .inquiry-chat-bubble .chat-avatar {
-  width: 36px;
-  height: 36px;
+  width: 67px;
+  height: 67px;
   border-radius: 50%;
   object-fit: cover;
 }

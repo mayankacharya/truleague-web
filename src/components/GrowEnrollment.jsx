@@ -8,6 +8,12 @@ import dummy2 from "../assets/OnlySVG/avator2.svg";
 import poweredByAI from "../assets/OnlySVG/Powered by AI.svg";
 import dummy3 from "../assets/OnlySVG/glad.svg";
 import dummy4 from "../assets/OnlySVG/Thank.svg";
+import dummy5 from "../assets/OnlySVG/basketball.svg";
+// GrowEnrollment.jsx (top pe add karo)
+import veryPositiveIcon from "../assets/OnlySVG/verypositive1.svg"; // 👈 Tumhari image
+import positiveIcon from "../assets/OnlySVG/positive1.svg";
+import neutralIcon from "../assets/OnlySVG/neutral1.svg";
+import negativeIcon from "../assets/OnlySVG/negative1.svg";
 
 
 const SentimentCard = () => {
@@ -49,23 +55,38 @@ const SentimentCard = () => {
 
 
       <div className="sentiment-grid">
-        <div className="sentiment-box very">
-          Very Positive
-          <strong>{veryPositive}%</strong>
-        </div>
-        <div className="sentiment-box positive">
-          Positive
-          <strong>{positive}%</strong>
-        </div>
-        <div className="sentiment-box neutral">
-          Neutral
-          <strong>{neutral}%</strong>
-        </div>
-        <div className="sentiment-box negative">
-          Negative
-          <strong>{negative}%</strong>
-        </div>
-      </div>
+  <div className="sentiment-box very">
+    <div className="sentiment-label">
+      Very Positive      <img src={veryPositiveIcon} alt="" className="verypositive1" />
+
+    </div>
+    <strong>{veryPositive}</strong>
+  </div>
+
+  <div className="sentiment-box positive">
+    <div className="sentiment-label">
+      Positive      <img src={positiveIcon} alt="" className="positive1" />
+
+    </div>
+    <strong>{positive}</strong>
+  </div>
+
+  <div className="sentiment-box neutral">
+    <div className="sentiment-label">
+      Neutral      <img src={neutralIcon} alt="" className="neutral1" />
+
+    </div>
+    <strong>{neutral}</strong>
+  </div>
+
+  <div className="sentiment-box negative">
+    <div className="sentiment-label">
+     
+      Negative <img src={negativeIcon} alt="" className="negative1" />
+    </div>
+    <strong>{negative}</strong>
+  </div>
+</div>
 
       <div className="sentiment-footer">
         {veryPositive}% of your conversations are positive. <br />
@@ -371,7 +392,7 @@ export default function GrowEnrollment() {
       <img className="corner-avatar top-left" src={dummy1} alt="" />
       <img className="corner-avatar bottom-right" src={dummy2} alt="" />
       <div className="inquiry-chat-bubble inquiry-reveal">
-        <img src={dummy1} alt="" className="chat-avatar" />
+        <img src={dummy5} alt="" className="chat-avatar" />
         <p>
           Keen to know about sport clubs <br />
           and activities in the college.<br />
