@@ -940,7 +940,7 @@
   .sentiment-footer {
     position: absolute !important;
     top: auto !important;
-    bottom: -158px !important;
+    bottom: -140px !important;
     left: -12% !important;
     transform: translateX(-50%) !important;
     max-width: 280px !important;
