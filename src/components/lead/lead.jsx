@@ -35,25 +35,28 @@ const Lead = () => {
   const [isCounting, setIsCounting] = useState(false)
 
   useEffect(() => {
-    if (!sectionRef.current) {
-      return undefined
+  if (!sectionRef.current) {
+    return undefined
+  }
+
+  // 🔥 Detect mobile
+  const isMobile = window.innerWidth <= 768
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      setIsVisible(entry.isIntersecting)
+    },
+    {
+      threshold: isMobile ? 0.2 : 0.5  // 👈 Mobile: 20%, Desktop: 50%
     }
+  )
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting)
-      },
-      {
-        threshold: 0.5
-      }
-    )
+  observer.observe(sectionRef.current)
 
-    observer.observe(sectionRef.current)
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [])
+  return () => {
+    observer.disconnect()
+  }
+}, [])
 
   useEffect(() => {
     let rafId
